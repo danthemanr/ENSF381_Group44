@@ -1,21 +1,87 @@
 <!doctype html>
 <html>
-	<head>
-		<title>
-			
-		</title>
-	</head>
-	<body>
-		<header>
-			<img src="images/logo.jpg" alt="LMS Logo" height="100px" />
-			<br>
-			<h1>LMS - Learning Management System</h1>
-		</header>
-		<!--Some of the example output has an h2 here-->
-		<div>
-			<a href="index.html">Homepage</a>
-		</div>
-		
-		<footer>© 2025 LMS. All rights reserved.</footer>
-	</body>
+   <head>
+        <title>
+            Courses
+        </title>
+    </head>
+    <body>
+        <header>
+            <img src="images/logo.jpg" alt="LMS Logo" height="100px" />
+            <br>
+            <h1>LMS - Learning Management System</h1>
+            <h2>LMS - Course View</h2>
+        </header>
+        <div>
+            <a href="index.html">Homepage</a>
+        </div>
+        <main>
+            <br /><br />
+            <form>
+                <select>
+                    <option value="Winter 2025">Winter 2025</option>
+                    <option value="Fall 2024">Fall 2024</option>
+                    <option value="Summer 2024">Summer 2024</option>
+                    <option value="Spring 2024">Spring 2024</option>
+                </select>
+            </form>
+            <table border="0" width="100%">
+                <tr><td colspan="3">
+                    <h2>Enrolled Courses</h2><hr />
+                </td></tr>
+                <tr>
+                    <td>
+                        <img src="images/course1.jpg" alt="Course Image">
+                        <p>Course Name: Web Development</p>
+                        <p>Course Code: WD381</p>
+                        <a href="attempt_quiz.html">Attempt Quiz</a>
+                    </td><td>
+                        <img src="images/course1.jpg" alt="Course Image">
+                        <p>Course Name: Data Structures</p>
+                        <p>Course Code: DS371</p>
+                        <a href="attempt_quiz.html">Attempt Quiz</a>
+                    </td><td>
+                        <img src="images/course1.jpg" alt="Course Image">
+                        <p>Course Name: DBMS</p>
+                        <p>Course Code: DB346</p>
+                        <a href="attempt_quiz.html">Attempt Quiz</a>
+                    </td>
+                </tr><tr>
+                    <td>
+                        <img src="images/course1.jpg" alt="Course Image">
+                        <p>Course Name: Software Testing</p>
+                        <p>Course Code: ST484</p>
+                        <a href="attempt_quiz.html">Attempt Quiz</a>
+                    </td><td>
+                        <img src="images/course1.jpg" alt="Course Image">
+                        <p>Course Name: Software Architechtures</p>
+                        <p>Course Code: SA396</p>
+                        <a href="attempt_quiz.html">Attempt Quiz</a>
+                    </td><td>
+                    </td>
+                </tr>
+                <tr><td colspan="3">
+                    <h2>Pending Invitations</h2><hr />
+                </td></tr>
+                <tr>
+                    <td>
+                        <img src="images/course2.jpg" alt="Course Image">
+                        <p>Course Name: Data Science</p>
+                        <p>Course Code: DS102</p>
+                        <button style="background-color:lightgreen;">Accept</button>
+                        <button style="background-color:salmon;">Decline</button>
+                    </td><td>
+                        <img src="images/course2.jpg" alt="Course Image">
+                        <p>Course Name: Machine Learning</p>
+                        <p>Course Code: ML105</p>
+                        <button style="background-color:lightgreen;">Accept</button>
+                        <button style="background-color:salmon;">Decline</button><td>
+                    </td><br><td>
+                    </td>
+                </tr>
+            </table>
+            <br />
+        </main>
+        <footer>© 2025 LMS. All rights reserved.</footer>
+    </body>
 </html>
