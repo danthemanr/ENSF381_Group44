@@ -18,7 +18,7 @@
         </div>
         <main>
             <br /><br />
-            <img src="banner.jpg" alt="Quiz Time">
+            <img src="images/banner.jpg" alt="Quiz Time" width="100%">
             <h2>Course Name: Web Developement</h2> <!--Do I have to make this dynamic?-->
             <h2>Course Code: WD381</h2> <!--Do I have to make this dynamic?-->
             <p>Topic: HTML Basics</p>
@@ -36,17 +36,18 @@
                 <button>Submit Answer</button>
                 <h3>Question 2</h3>
                 <p>Which of the following are HTML elements? (Select all that apply)</p>
-                <input type="checkbox" name="question2" id="<div>"
+                <input type="checkbox" name="question2a" id="<div>"
                     /><<label for="<div>">div></label>
                     <!--this is probably not the right way to do this-->
                 <br />
-                <input type="checkbox" name="question2" id="<span>"
+                <input type="checkbox" name="question2b" id="<span>"
                     /><<label for="<span>">span></label>
                     <!--this is probably not the right way to do this-->
                 <br />
                 <button>Submit Answer</button>
                 <br /><br />
-                <button>Finish Quiz</button>
+                <button onclick="location.href='leaderboard.html'" type="button">Finish Quiz</button>
+                <!--need to change type to submit later-->
                 <br /><br />
             </form>
         </main>
