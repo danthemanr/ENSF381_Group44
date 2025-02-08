@@ -1,0 +1,46 @@
+.Container{  
+    display: flex;
+    flex-direction: row;
+}
+.navbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.navbar:hover{
+    background-color: #333;
+}
+
+.item {
+    flex: 1;
+
+    padding: 20px;
+    margin: 5px;
+    background-color: lightblue;
+    border: 1px solid darkblue;
+    text-align: center;
+}
+.item img {
+    width: 100px;
+    height: 100px;
+    display: block;
+    margin: 0 auto 10px;
+}
+.navbar>.item {
+    padding: 5px;
+    margin: 20px;
+    background-color: #00000000;
+    border: 0px;
+}
+.navbar>.item:hover {
+    background-color: #bdbbbb;
+}
+
+.dropdown{
+    display: none;
+}
+#nav1:hover #dropdown1{
+    display: block;
+    flex-direction: column;
+    background-color: white;
+}
