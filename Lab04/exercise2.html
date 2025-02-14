@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lab4 – Exercise 2</title>
+    </head>
+    <body>
+        <h1>JavaScript Lab</h1>
+        <script>
+            //let add = (x,y) => x+y;
+            //let subtract = (x, y) => x - y;
+            let add = (x,y = 0) => x+y;
+            let subtract = (x, y = 0) => x - y;
+            let multiply = (x, y = 1) => x * y;
+            function divide(x, y = 1){
+            if (y == 0){
+                console.log("don't");
+                return null;
+            }
+            else{
+                return x / y;
+            }
+            }
+
+            let calc = (x, y, callback) => callback(x,y);
+        </script>
+    </body>
+</html>

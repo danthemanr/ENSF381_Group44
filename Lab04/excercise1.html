@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lab4 – Exercise 1</title>
+    </head>
+    <body>
+        <h1>JavaScript Lab</h1>
+        <script>
+            console.log("Variable Declaration:");
+            let var1 = 21;
+            let var2 = 69;
+            const answer = 42;
+            console.log(var1, var2, answer);
+            var1 = 22;
+            console.log(var1);
+            //answer = 70; //Uncaught TypeError: Assignment to constant variable.
+
+            console.log("String Operation:");
+            var string1 = "Hello, World!";
+            var string2 = "JavaScript is fun";
+            console.log(string1.length);
+            console.log(string1+string2);
+            string2.replace("fun", "awesome");
+            console.log(string2);
+
+            console.log("String Templates:");
+            var name = "Alice";
+            var age = 25;
+            console.log(`My name is ${name} and I am ${age} years old.`);
+
+
+            var Date = new Date();
+
+            console.log(Date.getFullYear());
+            console.log(Date.getMonth());
+            console.log(Date.getDay());
+
+            var days = [`Sunday`,`Monday`,`Tuesday`,`Wednesday`,`Thursday`,`Friday`,`Saturday`];
+
+            console.log(days[Date.getDay()]);
+        </script>
+    </body>
+</html>
