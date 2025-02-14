@@ -1,0 +1,116 @@
+header{
+    display: flex;
+    background-color: #004080;
+    padding: 20px;
+    margin: 0;
+    justify-content: space-between;
+}
+.navbar{
+    display: flex;
+    background-color: #036;
+    justify-content: space-around; /*I'm not 100% sure this is right*/
+}
+.navbar>*{
+    text-decoration: none;
+    color: #fff;
+    padding: 10px;
+}
+.navbar>a:hover{
+    text-decoration: underline;
+}
+footer{
+    color: white;
+    background-color: #004080;
+    padding: 10px;
+    text-align: center;
+}
+
+h2{color: #004080;}
+p, h4, h3, div, label{color: #000;}
+main{
+    display: flex;
+    background-color: #d4d4d4;
+    flex-direction: column;
+    text-align: center;
+}
+main>div{
+    padding: 20px;
+    margin: 20px;
+}
+
+#loginform{
+    display: flex;
+    flex-direction: column;
+    background-color: #cacaca; /*says #d4d4d4 but it looks different*/
+    padding: 30px;
+    margin: 0 150px;
+    border-radius: 30px;
+    /*shadow effects*/
+}
+#loginform>label{
+    font-size: 16px;
+    margin: 5px;
+}
+#loginform>input{
+    background-color: lightgoldenrodyellow;
+    padding: 10px;
+    border-radius: 5px;
+    border: 3px solid #888; /*look at colour*/
+    margin-bottom: 30px;
+}
+#loginbutton{
+    background-color: #008000;
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+}
+#loginbutton:hover{
+    background-color: #006600;
+}
+#loginbutton>a{
+    /*remove when anchor is removed*/
+    color: white;
+    text-decoration: none;
+}
+#forgotpassword{
+    color: #004080;
+    text-decoration: none;
+}
+#forgotpassword:hover{
+    text-decoration: underline;
+}
+select{
+    background-color: lightgoldenrodyellow;
+    border-radius: 5px;
+    padding: 5px;
+}
+.tile{ /*not at all sure if this one works*/
+    background-color: #e6f2ff;
+    /*box shadow*/
+    padding: 20px;
+    margin: 15px;
+    border-radius: 10px;
+}
+.tile>img{
+    border-radius: 5px;
+}
+.accept{
+    background-color: #4CAF50;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+}
+.accept:hover{
+    background-color: #265e28;
+}
+.decline{
+    background-color: #D32F2F;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+}
+.decline:hover{
+    background-color: #821b1b;
+}

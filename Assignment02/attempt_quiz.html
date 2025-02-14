@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+   <head>
+        <title>
+            Quiz
+        </title>
+    </head>
+	<link href="styles.css" type="text/css" rel="stylesheet" />
+    <body>
+        <header>
+            <img src="images/logo.jpg" alt="LMS Logo" height="100px" />
+            <br>
+            <h1>LMS - Learning Management System</h1>
+        </header>
+        <div class="navbar">
+            <a href="index.html">Homepage</a>
+            <a href="course_view.html">Courses</a>
+        </div>
+        <main>
+            <div>
+                <img src="images/banner.jpg" alt="Quiz Time" width="100%">
+                <div>
+                    <h2>Course Name: Web Developement</h2>
+                    <h2>Course Code: WD381</h2>
+                    <p>Topic: HTML Basics</p>
+                    <p>Deadline: 11:59 PM, February 10, 2025</p>
+                    <p>Attempts Allowed: 1</p>
+                </div>
+                <form>
+                    <h3>Question 1</h3>
+                    <p>What does HTML stand for?</p>
+                    <input type="radio" name="question1" id="Hyper Text Markup Language" />
+                    <label for="Hyper Text Markup Language">Hyper Text Markup Language</label>
+                    <br />
+                    <input type="radio" name="question1" id="Home Tool Markup Language" />
+                    <label for="Home Tool Markup Language">Home Tool Markup Language</label>
+                    <br />
+                    <button>Submit Answer</button>
+                    <h3>Question 2</h3>
+                    <p>Which of the following are HTML elements? (Select all that apply)</p>
+                    <input type="checkbox" name="question2a" id="<div>" /> 
+                    <<label for="<div>">div></label>
+                        <!--this is probably not the right way to do the < and > symbols-->
+                    <br />
+                    <input type="checkbox" name="question2b" id="<span>" />
+                    <<label for="<span>">span></label>
+                        <!--this is probably not the right way to do the < and > symbols-->
+                    <br />
+                    <button>Submit Answer</button>
+                    <br /><br />
+                    <button><a href="leaderboard.html">Finish Quiz</a></button>
+                    <br /><br />
+                </form>
+            </div>
+        </main>
+        <footer>© 2025 LMS. All rights reserved.</footer>
+    </body>
+</html>
