@@ -6,20 +6,6 @@
         </title>
     </head>
 	<link href="styles.css" type="text/css" rel="stylesheet" />
-    <style>
-        table{background-color: white;
-            font-size: 20px;
-            color: black;}
-        td{text-align:center;}
-        #title{color:white;
-            font-size:36px;
-            background-color:rgb(60, 160, 60);}
-        #rank1{background-color:gold;}
-        #rank2{background-color:silver;}
-        #rank3{background-color:#CD7F32;}
-        #rank4odd{background-color:white;}
-        #rank4even{background-color:lightgray}
-    </style>
     <body>
         <header>
             <img src="images/logo.jpg" alt="LMS Logo" height="100px" />
@@ -31,56 +17,52 @@
             <a href="course_view.html">Courses</a>
         </div>
         <main>
-            <div>
-                <table border="1px" width="100%" style="border-collapse:collapse;">
-                    <tr ><th colspan="5" id="title">
-                        Leaderboard
-                    </th></tr><tr>
-                        <th>Rank</th>
-                        <th>Profile Picture</th>
-                        <th>Name</th>
-                        <th>Total Score</th>
-                        <th>Course</th>
-                    <!--I'm just going to copy the formating for the table
-                    but there may be a better, more dynamic way to do this-->
-                    </tr><tr id="rank1">
-                        <td>1</td>
-                        <td><img src="images/student.png" height="50px" alt="Image not found"/></td>
-                        <td>John Doe</td>
-                        <td>95</td>
-                        <td>Web Development</td>
-                    </tr><tr id="rank2">
-                        <td rowspan="2">2</td>
-                        <td><img src="images/student.png" height="50px" alt="Image not found"/></td>
-                        <td>Jane Smith</td>
-                        <td>90</td>
-                        <td>Data Structures</td>
-                    </tr><tr id="rank2">
-                        <td><img src="images/student.png" height="50px" alt="Image not found"/></td>
-                        <td>Emily White</td>
-                        <td>90</td>
-                        <td>Algorithms</td>
-                    </tr><tr id="rank3">
-                        <td>3</td>
-                        <td><img src="images/student.png" height="50px" alt="Image not found"/></td>
-                        <td>Michael Brown</td>
-                        <td>85</td>
-                        <td>Machine Learning</td>
-                    </tr><tr id="rank4odd">
-                        <td>4</td>
-                        <td><img src="images/student.png" height="50px" alt="Image not found"/></td>
-                        <td>Sarah Johnson</td>
-                        <td>80</td>
-                        <td>Networking</td>
-                    </tr><tr id="rank4even">
-                        <td>4</td>
-                        <td><img src="images/student.png" height="50px" alt="Image not found"/></td>
-                        <td>Rob Miller</td>
-                        <td>75</td>
-                        <td>Networking</td>
-                    </tr>
-                </table>
-            </div>
+            <table width="100%" id="leaderboard">
+                <tr ><th colspan="5" id="title">
+                    Leaderboard
+                </th></tr><tr>
+                    <th>Rank</th>
+                    <th>Profile Picture</th>
+                    <th>Name</th>
+                    <th>Total Score</th>
+                    <th>Course</th>
+                </tr><tr id="rank1">
+                    <td>1</td>
+                    <td><img src="images/student.png" height="50px" alt="Image not found"/></td>
+                    <td>John Doe</td>
+                    <td>95</td>
+                    <td>Web Development</td>
+                </tr><tr id="rank2">
+                    <td rowspan="2">2</td>
+                    <td><img src="images/student.png" height="50px" alt="Image not found"/></td>
+                    <td>Jane Smith</td>
+                    <td>90</td>
+                    <td>Data Structures</td>
+                </tr><tr id="rank2">
+                    <td><img src="images/student.png" height="50px" alt="Image not found"/></td>
+                    <td>Emily White</td>
+                    <td>90</td>
+                    <td>Algorithms</td>
+                </tr><tr id="rank3">
+                    <td>3</td>
+                    <td><img src="images/student.png" height="50px" alt="Image not found"/></td>
+                    <td>Michael Brown</td>
+                    <td>85</td>
+                    <td>Machine Learning</td>
+                </tr><tr id="rank_odd">
+                    <td>4</td>
+                    <td><img src="images/student.png" height="50px" alt="Image not found"/></td>
+                    <td>Sarah Johnson</td>
+                    <td>80</td>
+                    <td>Networking</td>
+                </tr><tr id="rank_even">
+                    <td>5</td>
+                    <td><img src="images/student.png" height="50px" alt="Image not found"/></td>
+                    <td>Rob Miller</td>
+                    <td>75</td>
+                    <td>Networking</td>
+                </tr>
+            </table>
         </main>
         <footer>© 2025 LMS. All rights reserved.</footer>
     </body>

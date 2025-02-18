@@ -19,7 +19,7 @@ header{
     text-decoration: underline;
 }
 footer{
-    color: white;
+    color: #fff;
     background-color: #004080;
     padding: 10px;
     text-align: center;
@@ -113,4 +113,29 @@ select{
 }
 .decline:hover{
     background-color: #821b1b;
+}
+#leaderboard{
+    background-color: #d4d4d4;
+    font-size: 20px;
+    color: black;
+    margin-top: 60px;
+    margin-bottom: 30px;
+    font-family: sans-serif;
+}
+td{
+    text-align:center;
+}
+#leaderboard tr:nth-child(1){
+    color:#fff;
+    font-size:36px;
+    background-color:#4CAF50;
+}
+#rank1{background-color:#ffd700;}
+#rank2{background-color:#c0c0c0;}
+#rank3{background-color:#CD7F32;}
+#rank_odd{background-color:#f9f9f9;}
+#rank_even{background-color:#e4e2e2}
+#leaderboard  img{
+    border-radius: 50%;
+    border: 1px solid black;
 }
