@@ -5,10 +5,11 @@ header{
     margin: 0;
     justify-content: space-between;
 }
+header img{height:100px;}
 .navbar{
     display: flex;
     background-color: #036;
-    justify-content: space-around; /*I'm not 100% sure this is right*/
+    justify-content: space-around;
 }
 .navbar>*{
     text-decoration: none;
@@ -17,6 +18,7 @@ header{
 }
 .navbar>a:hover{
     text-decoration: underline;
+    color: #fff;
 }
 footer{
     color: #fff;
@@ -24,9 +26,12 @@ footer{
     padding: 10px;
     text-align: center;
 }
-
+body *{font-family: sans-serif;}
 h2{color: #004080;}
 p, h4, h3, div, label{color: #000;}
+form{background-color: #cacaca;}
+table{border: none; width: 100%;}
+td{text-align:center;}
 main{
     display: flex;
     background-color: #d4d4d4;
@@ -36,16 +41,19 @@ main{
 main>div{
     padding: 20px;
     margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
 
 #loginform{
     display: flex;
     flex-direction: column;
-    background-color: #cacaca; /*says #d4d4d4 but it looks different*/
     padding: 30px;
     margin: 0 150px;
     border-radius: 30px;
-    /*shadow effects*/
+    box-shadow: 10px 20px 10px #cecece;
 }
 #loginform>label{
     font-size: 16px;
@@ -55,14 +63,16 @@ main>div{
     background-color: lightgoldenrodyellow;
     padding: 10px;
     border-radius: 5px;
-    border: 3px solid #888; /*look at colour*/
+    border: 3px solid #888;
     margin-bottom: 30px;
 }
 #loginbutton{
     background-color: #008000;
-    border-radius: 10px;
+    border-radius: 5px;
     border: none;
+    margin: 20px;
     padding: 10px;
+    max-width: 100px;
 }
 #loginbutton:hover{
     background-color: #006600;
@@ -79,19 +89,22 @@ main>div{
 #forgotpassword:hover{
     text-decoration: underline;
 }
+
 select{
     background-color: lightgoldenrodyellow;
     border-radius: 5px;
     padding: 5px;
 }
-.tile{ /*not at all sure if this one works*/
+.tile{
+    width: 33%;
     background-color: #e6f2ff;
-    /*box shadow*/
+    box-shadow: 20px 20px 10px #cecece;
     padding: 20px;
     margin: 15px;
     border-radius: 10px;
 }
 .tile>img{
+    width: 100%;
     border-radius: 5px;
 }
 .accept{
@@ -114,16 +127,61 @@ select{
 .decline:hover{
     background-color: #821b1b;
 }
+
+.banner{
+    width: 100%;
+    height: 150px;
+    border-radius: 5px;
+}
+.quiz_details{
+    background-color: #e6f2ff;
+    padding: 20px;
+    margin: 0px 250px;
+}
+.question{
+    display: flex;
+    flex-wrap: wrap;
+    width: 300px;
+    justify-items: flex-start;
+    padding: 20px;
+}
+.question label{
+    width: 90%;
+    text-align: left;
+}
+.quiz>button{
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: none;
+}
+.submit_answer{
+    color: #000;
+    background-color: #e6f2ff;
+}
+.submit_answer:hover{
+    color: #fff;
+    background-color: #003366;
+}
+.finish_quiz{
+    color: #fff;
+    background-color: #D32F2F;
+}
+.finish_quiz a{
+    /*remove when anchor is removed*/
+    color:#fff;
+    text-decoration:none;
+}
+.finish_quiz:hover{
+    background-color: #821b1b;
+}
+
 #leaderboard{
     background-color: #d4d4d4;
     font-size: 20px;
     color: black;
     margin-top: 60px;
     margin-bottom: 30px;
-    font-family: sans-serif;
-}
-td{
-    text-align:center;
 }
 #leaderboard tr:nth-child(1){
     color:#fff;
@@ -135,7 +193,8 @@ td{
 #rank3{background-color:#CD7F32;}
 #rank_odd{background-color:#f9f9f9;}
 #rank_even{background-color:#e4e2e2}
-#leaderboard  img{
+#leaderboard img{
+    height: 50px;
     border-radius: 50%;
     border: 1px solid black;
 }
