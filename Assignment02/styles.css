@@ -1,86 +1,96 @@
+/*page structure and general formatting*/
 header{
     display: flex;
-    background-color: #004080;
+    justify-content: space-between;
     padding: 20px;
     margin: 0;
-    justify-content: space-between;
+    background-color: #004080;
 }
 header img{height:100px;}
 .navbar{
     display: flex;
-    background-color: #036;
     justify-content: space-around;
-}
-.navbar>*{
-    text-decoration: none;
-    color: #fff;
     padding: 10px;
+    background-color: #036;
+}
+.navbar *{
+    color: #fff;
+    text-decoration: none;
 }
 .navbar>a:hover{
-    text-decoration: underline;
     color: #fff;
+    text-decoration: underline;
 }
 footer{
-    color: #fff;
-    background-color: #004080;
-    padding: 10px;
     text-align: center;
+    padding: 10px;
+    background-color: #004080;
+    color: #fff;
 }
 body *{font-family: sans-serif;}
-h2{color: #004080;}
-p, h4, h3, div, label{color: #000;}
-form{background-color: #cacaca;}
-table{border: none; width: 100%;}
-td{text-align:center;}
+body{margin:0px;}
 main{
     display: flex;
-    background-color: #d4d4d4;
     flex-direction: column;
     text-align: center;
+    background-color: #d4d4d4;
 }
 main>div{
+    display: flex;
+    flex-direction: column;
     padding: 20px;
     margin: 20px;
-    display: flex;
-    flex-direction: column;
     align-items: center;
 }
-
-
-#loginform{
+form{
     display: flex;
+    background-color: #cacaca;
+}
+table{
+    width: 100%;
+    border: none;
+    color: #000;
+}
+td{text-align:center;}
+h1{color: #fff}
+h2{color: #004080;}
+h3, h3, div, p, label{color: #000;}
+button{
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+}
+button>a{color: #fff; text-decoration: none;} /*remove when these anchors are removed*/
+button>a:hover{color: #fff; text-decoration: none;} /*remove when these anchors are removed*/
+
+
+/*for login.html*/
+#loginform{
     flex-direction: column;
     padding: 30px;
-    margin: 0 150px;
+    margin: 0px 150px;
     border-radius: 30px;
     box-shadow: 10px 20px 10px #cecece;
 }
 #loginform>label{
-    font-size: 16px;
     margin: 5px;
+    font-size: 16px;
 }
 #loginform>input{
-    background-color: lightgoldenrodyellow;
     padding: 10px;
-    border-radius: 5px;
-    border: 3px solid #888;
     margin-bottom: 30px;
+    border: 3px solid #888;
+    border-radius: 5px;
+    background-color: lightgoldenrodyellow;
 }
 #loginbutton{
-    background-color: #008000;
-    border-radius: 5px;
-    border: none;
-    margin: 20px;
-    padding: 10px;
     max-width: 100px;
+    margin: 20px;
+    background-color: #008000;
 }
 #loginbutton:hover{
     background-color: #006600;
-}
-#loginbutton>a{
-    /*remove when anchor is removed*/
-    color: white;
-    text-decoration: none;
 }
 #forgotpassword{
     color: #004080;
@@ -90,58 +100,53 @@ main>div{
     text-decoration: underline;
 }
 
+/*for course_view.html*/
 select{
-    background-color: lightgoldenrodyellow;
-    border-radius: 5px;
     padding: 5px;
+    border-radius: 5px;
+    background-color: lightgoldenrodyellow;
 }
 .tile{
     width: 33%;
-    background-color: #e6f2ff;
-    box-shadow: 20px 20px 10px #cecece;
     padding: 20px;
     margin: 15px;
     border-radius: 10px;
+    background-color: #e6f2ff;
+    box-shadow: 20px 20px 10px #cecece;
 }
 .tile>img{
     width: 100%;
     border-radius: 5px;
 }
 .accept{
-    background-color: #4CAF50;
-    color: #fff;
-    border-radius: 5px;
-    border: none;
     padding: 5px;
+    background-color: #4CAF50;
 }
 .accept:hover{
     background-color: #265e28;
 }
 .decline{
-    background-color: #D32F2F;
-    color: #fff;
-    border-radius: 5px;
-    border: none;
     padding: 5px;
+    background-color: #D32F2F;
 }
 .decline:hover{
     background-color: #821b1b;
 }
 
+/*for attempt_quiz.html*/
 .banner{
     width: 100%;
     height: 150px;
     border-radius: 5px;
 }
 .quiz_details{
-    background-color: #e6f2ff;
     padding: 20px;
     margin: 0px 250px;
+    background-color: #e6f2ff;
 }
 .question{
-    display: flex;
-    flex-wrap: wrap;
     width: 300px;
+    flex-wrap: wrap;
     justify-items: flex-start;
     padding: 20px;
 }
@@ -149,13 +154,8 @@ select{
     width: 90%;
     text-align: left;
 }
-.quiz>button{
-    padding: 10px;
-    margin-top: 10px;
-    border-radius: 5px;
-    border: none;
-}
 .submit_answer{
+    margin-top: 10px;
     color: #000;
     background-color: #e6f2ff;
 }
@@ -164,29 +164,23 @@ select{
     background-color: #003366;
 }
 .finish_quiz{
-    color: #fff;
+    margin-top: 10px;
     background-color: #D32F2F;
-}
-.finish_quiz a{
-    /*remove when anchor is removed*/
-    color:#fff;
-    text-decoration:none;
 }
 .finish_quiz:hover{
     background-color: #821b1b;
 }
 
+/*for leaderboard.html*/
 #leaderboard{
-    background-color: #d4d4d4;
-    font-size: 20px;
-    color: black;
     margin-top: 60px;
     margin-bottom: 30px;
+    font-size: 20px;
 }
 #leaderboard tr:nth-child(1){
     color:#fff;
-    font-size:36px;
     background-color:#4CAF50;
+    font-size:36px;
 }
 #rank1{background-color:#ffd700;}
 #rank2{background-color:#c0c0c0;}
@@ -195,6 +189,6 @@ select{
 #rank_even{background-color:#e4e2e2}
 #leaderboard img{
     height: 50px;
-    border-radius: 50%;
     border: 1px solid black;
+    border-radius: 50%;
 }
