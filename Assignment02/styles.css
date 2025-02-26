@@ -6,7 +6,10 @@ header{
     margin: 0;
     background-color: #004080;
 }
-header img{height:100px;}
+header img{
+    max-height:100px;
+    max-width:100px;
+} 
 .navbar{
     display: flex;
     justify-content: space-around;
@@ -22,9 +25,11 @@ header img{height:100px;}
     text-decoration: underline;
 }
 footer{
-    text-align: center;
     padding: 10px;
     background-color: #004080;
+}
+footer>p{
+    text-align: center;
     color: #fff;
 }
 body *{font-family: sans-serif;}
@@ -44,6 +49,8 @@ main>div{
 }
 form{
     display: flex;
+    flex-direction: column;
+    margin: 0px 150px;
     background-color: #cacaca;
 }
 table{
@@ -67,9 +74,7 @@ button>a:hover{color: #fff; text-decoration: none;} /*remove when these anchors 
 
 /*for login.html*/
 #loginform{
-    flex-direction: column;
     padding: 30px;
-    margin: 0px 150px;
     border-radius: 30px;
     box-shadow: 10px 20px 10px #cecece;
 }
@@ -80,7 +85,7 @@ button>a:hover{color: #fff; text-decoration: none;} /*remove when these anchors 
 #loginform>input{
     padding: 10px;
     margin-bottom: 30px;
-    border: 3px solid #888;
+    border: 3px solid #aaa;
     border-radius: 5px;
     background-color: lightgoldenrodyellow;
 }
@@ -142,22 +147,18 @@ select{
 .quiz_details{
     padding: 20px;
     margin: 0px 250px;
-    background-color: #e6f2ff;
+    background-color: #B6D0E2; /*powder blue from htmlcolorcodes.com*/
 }
 .question{
-    width: 300px;
-    flex-wrap: wrap;
-    justify-items: flex-start;
+    width: 250px;
+    flex-wrap: nowrap;
+    align-items: self-start;
     padding: 20px;
-}
-.question label{
-    width: 90%;
-    text-align: left;
 }
 .submit_answer{
     margin-top: 10px;
     color: #000;
-    background-color: #e6f2ff;
+    background-color: #B6D0E2;
 }
 .submit_answer:hover{
     color: #fff;
@@ -188,7 +189,8 @@ select{
 #rank_odd{background-color:#f9f9f9;}
 #rank_even{background-color:#e4e2e2}
 #leaderboard img{
-    height: 50px;
+    max-width: 50px;
+    max-height: 50px;
     border: 1px solid black;
     border-radius: 50%;
 }

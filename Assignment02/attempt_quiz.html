@@ -2,7 +2,7 @@
 <html>
    <head>
         <title>
-            Quiz
+            Quiz - LMS
         </title>
     </head>
 	<link href="styles.css" type="text/css" rel="stylesheet" />
@@ -17,7 +17,7 @@
             <a href="course_view.html">Courses</a>
         </div>
         <main>
-            <div class="quiz">
+            <div>
                 <img class="banner" src="images/banner.jpg" alt="Quiz Time">
                 <div class="quiz_details">
                     <h2>Course Name: Web Developement</h2>
@@ -29,24 +29,30 @@
                 <h3>Question 1</h3>
                 <p>What does HTML stand for?</p>
                 <form class="question">
-                    <input type="radio" name="question1" id="Hyper Text Markup Language" />
-                    <label for="Hyper Text Markup Language">Hyper Text Markup Language</label>
-                    <input type="radio" name="question1" id="Home Tool Markup Language" />
-                    <label for="Home Tool Markup Language">Home Tool Markup Language</label>
+                    <div>
+                        <input type="radio" name="question1" id="Hyper Text Markup Language" />
+                        <label for="Hyper Text Markup Language">Hyper Text Markup Language</label>
+                    </div><div>
+                        <input type="radio" name="question1" id="Home Tool Markup Language" />
+                        <label for="Home Tool Markup Language">Home Tool Markup Language</label>
+                    </div>
                 </form>
                 <button class="submit_answer">Submit Answer</button>
                 <h3>Question 2</h3>
                 <p>Which of the following are HTML elements? (Select all that apply)</p>
                 <form class="question">
-                    <input type="checkbox" name="question2a" id="<div>" /> 
-                    <label for="<div>">&lt;div&gt;</label>
-                    <input type="checkbox" name="question2b" id="<span>" />
-                    <label for="<span>">&lt;span&gt;</label>
+                    <div>
+                        <input type="checkbox" name="q2" id="q2a" value="<div>" /> 
+                        <label for="q2a">&lt;div&gt;</label>
+                    </div><div>
+                        <input type="checkbox" name="q2" id="q2b" value="<span>" />
+                        <label for="q2b">&lt;span&gt;</label>
+                    </div>
                 </form>
                 <button class="submit_answer">Submit Answer</button>
                 <button class="finish_quiz"><a href="leaderboard.html">Finish Quiz</a></button>
             </div>
         </main>
-        <footer>© 2025 LMS. All rights reserved.</footer>
+        <footer><p>© 2025 LMS. All rights reserved.</p></footer>
     </body>
 </html>
