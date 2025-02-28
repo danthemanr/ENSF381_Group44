@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lab5 - Exercise 3</title>
+</head>
+<body>
+    <input type="text" id="textInput" placeholder="Type something here..."/>
+    <label id="textLabel"></label>
+    <button id="redButton">Red</button>
+    <button id="blueButton">Blue</button>
+    <button id="greenButton">Green</button>
+    <button id="orangeButton">Orange</button>
+    <button id="purpleButton">Purple</button>
+</body>
+<script type="text/javascript">
+    const textInput = document.getElementById("textInput");
+    let textLabel = document.getElementById("textLabel");
+    textInput.addEventListener('keypress', (e) => {
+    if (e.key === "Enter") {
+        changeLabel(textInput.value);
+        textInput.value = "";
+    }
+    });
+
+    let redButton = document.getElementById("redButton");
+    redButton.addEventListener('click', () => {
+        textLabel.style = "color:"+redButton.textContent;
+    });
+    let blueButton = document.getElementById("blueButton");
+    blueButton.addEventListener('click', () => {
+        textLabel.style = "color:"+blueButton.textContent;
+    });
+    let greenButton = document.getElementById("greenButton");
+    greenButton.addEventListener('click', () => {
+        textLabel.style = "color:"+greenButton.textContent;
+    });
+    let orangeButton = document.getElementById("orangeButton");
+    orangeButton.addEventListener('click', () => {
+        textLabel.style = "color:"+orangeButton.textContent;
+    });
+    let purpleButton = document.getElementById("purpleButton");
+    purpleButton.addEventListener('click', () => {
+        textLabel.style = "color:"+purpleButton.textContent;
+    });
+
+    async function retrieveData() {
+        try{
+            const response = await fetch('https://67c2055b61d8935867e5296d.mockapi.io/users_api');
+            const data = await response.json();
+            return data;
+        }catch(error){
+            console.error("Error parsing data: "+error);
+        }
+    }
+    async function changeLabel(value) {
+        const data = await retrieveData();
+        textLabel.textContent = "No users were found with the provided User_ID.";
+        data.forEach((user) => {
+            if (user.id === value) {
+                textLabel.textContent = `ID: ${user.id}, Name: ${user.first_name}, Group: ${user.users_group}`;
+            }
+        });
+    }
+</script>
+</html>
