@@ -1,4 +1,4 @@
-/*page structure and general formatting*/
+/*page structure*/
 header{
     display: flex;
     justify-content: space-between;
@@ -10,36 +10,34 @@ header img{
     max-height:100px;
     max-width:100px;
 } 
+footer{
+    padding: 10px;
+    background-color: #004080;
+}
 .navbar{
     display: flex;
     justify-content: space-around;
     padding: 10px;
     background-color: #036;
 }
-.navbar *{
-    color: #fff;
-    text-decoration: none;
-}
 .navbar>a:hover{
     color: #fff;
     text-decoration: underline;
 }
-footer{
-    padding: 10px;
-    background-color: #004080;
-}
-footer>p{
-    text-align: center;
+header *, footer *, .navbar *{
     color: #fff;
+    text-decoration: none;
 }
-body *{font-family: sans-serif;}
-body{margin:0px;}
-main{
-    display: flex;
-    flex-direction: column;
-    text-align: center;
+body{
+    margin:0px;
     background-color: #d4d4d4;
 }
+body *{
+    font-family: sans-serif;
+    text-align: center;
+}
+
+/*general formatting*/
 main>div{
     display: flex;
     flex-direction: column;
@@ -58,18 +56,15 @@ table{
     border: none;
     color: #000;
 }
-td{text-align:center;}
-h1{color: #fff}
 h2{color: #004080;}
-h3, h3, div, p, label{color: #000;}
+h3, h4, main p, main span, label{color: #000;}
 button{
     padding: 10px;
     border: none;
     border-radius: 5px;
     color: #fff;
 }
-button>a{color: #fff; text-decoration: none;} /*remove when these anchors are removed*/
-button>a:hover{color: #fff; text-decoration: none;} /*remove when these anchors are removed*/
+button>a, button>a:hover{color: #fff; text-decoration: none;} /*remove this when the anchors are removed*/
 
 
 /*for login.html*/
@@ -147,12 +142,11 @@ select{
 .quiz_details{
     padding: 20px;
     margin: 0px 250px;
-    background-color: #B6D0E2; /*powder blue from htmlcolorcodes.com*/
+    background-color: #B6D0E2;
 }
-.question{
+.answers{
     width: 250px;
-    flex-wrap: nowrap;
-    align-items: self-start;
+    align-items: start;
     padding: 20px;
 }
 .submit_answer{
@@ -183,11 +177,11 @@ select{
     background-color:#4CAF50;
     font-size:36px;
 }
-#rank1{background-color:#ffd700;}
-#rank2{background-color:#c0c0c0;}
-#rank3{background-color:#CD7F32;}
-#rank_odd{background-color:#f9f9f9;}
-#rank_even{background-color:#e4e2e2}
+.rank1{background-color:#ffd700;}
+.rank2{background-color:#c0c0c0;}
+.rank3{background-color:#CD7F32;}
+.rank_odd{background-color:#f9f9f9;}
+.rank_even{background-color:#e4e2e2}
 #leaderboard img{
     max-width: 50px;
     max-height: 50px;
