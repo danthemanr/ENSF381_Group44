@@ -1,0 +1,193 @@
+/*page structure*/
+header{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    margin: 0;
+    background-color: #004080;
+}
+header img{
+    max-height:100px;
+    max-width:100px;
+} 
+footer{
+    padding: 10px;
+    background-color: #004080;
+}
+.navbar{
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    background-color: #036;
+}
+.navbar>a:hover{
+    color: #fff;
+    text-decoration: underline;
+}
+header *, footer *, .navbar *{
+    color: #fff;
+    text-decoration: none;
+}
+body{
+    margin:0px;
+    background-color: #d4d4d4;
+}
+body *{
+    font-family: sans-serif;
+    text-align: center;
+}
+
+/*general formatting*/
+main>div{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin: 20px;
+    align-items: center;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    margin: 0px 150px;
+    background-color: #cacaca;
+}
+table{
+    width: 100%;
+    border: none;
+    color: #000;
+}
+h2{color: #004080;}
+h3, h4, main p, main span, label{color: #000;}
+button{
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+}
+button>a, button>a:hover{color: #fff; text-decoration: none;} /*remove this when the anchors are removed*/
+
+
+/*for login.html*/
+#loginform{
+    padding: 30px;
+    border-radius: 30px;
+    box-shadow: 10px 20px 10px #cecece;
+}
+#loginform>label{
+    margin: 5px;
+    font-size: 16px;
+}
+#loginform>input{
+    padding: 10px;
+    margin-bottom: 30px;
+    border: 3px solid #aaa;
+    border-radius: 5px;
+    background-color: lightgoldenrodyellow;
+}
+#loginbutton{
+    max-width: 100px;
+    margin: 20px;
+    background-color: #008000;
+}
+#loginbutton:hover{
+    background-color: #006600;
+}
+#forgotpassword{
+    color: #004080;
+    text-decoration: none;
+}
+#forgotpassword:hover{
+    text-decoration: underline;
+}
+
+/*for course_view.html*/
+select{
+    padding: 5px;
+    border-radius: 5px;
+    background-color: lightgoldenrodyellow;
+}
+.tile{
+    width: 33%;
+    padding: 20px;
+    margin: 15px;
+    border-radius: 10px;
+    background-color: #e6f2ff;
+    box-shadow: 20px 20px 10px #cecece;
+}
+.tile:hover{
+    background-color: #fff;
+}
+.tile>img{
+    width: 100%;
+    border-radius: 5px;
+}
+.accept{
+    padding: 5px;
+    background-color: #4CAF50;
+}
+.accept:hover{
+    background-color: #265e28;
+}
+.decline{
+    padding: 5px;
+    background-color: #D32F2F;
+}
+.decline:hover{
+    background-color: #821b1b;
+}
+
+/*for attempt_quiz.html*/
+.banner{
+    width: 100%;
+    height: 150px;
+    border-radius: 5px;
+}
+.quiz_details{
+    padding: 20px;
+    margin: 0px 250px;
+    background-color: #B6D0E2;
+}
+.answers{
+    width: 250px;
+    align-items: start;
+    padding: 20px;
+}
+.submit_answer{
+    margin-top: 10px;
+    color: #000;
+    background-color: #B6D0E2;
+}
+.submit_answer:hover{
+    color: #fff;
+    background-color: #003366;
+}
+.finish_quiz{
+    margin-top: 10px;
+    background-color: #D32F2F;
+}
+.finish_quiz:hover{
+    background-color: #821b1b;
+}
+
+/*for leaderboard.html*/
+#leaderboard{
+    margin-top: 60px;
+    margin-bottom: 30px;
+    font-size: 20px;
+}
+#leaderboard tr:nth-child(1){
+    color:#fff;
+    background-color:#4CAF50;
+    font-size:36px;
+}
+.rank1{background-color:#ffd700;}
+.rank2{background-color:#c0c0c0;}
+.rank3{background-color:#CD7F32;}
+.rank_odd{background-color:#f9f9f9;}
+.rank_even{background-color:#e4e2e2}
+#leaderboard img{
+    max-width: 50px;
+    max-height: 50px;
+    border: 1px solid black;
+    border-radius: 50%;
+}

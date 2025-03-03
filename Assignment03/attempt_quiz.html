@@ -1,0 +1,57 @@
+<!doctype html5>
+<html>
+   <head>
+        <title>
+            Quiz - LMS
+        </title>
+    </head>
+	<link href="styles.css" type="text/css" rel="stylesheet" />
+    <body>
+        <header>
+            <img src="images/logo.jpg" alt="LMS Logo" />
+            <h1>LMS - Learning Management System</h1>
+        </header>
+        <div class="navbar">
+            <a href="index.html">Homepage</a>
+            <a href="course_view.html">Courses</a>
+        </div>
+        <main>
+            <div>
+                <img class="banner" src="images/banner.jpg" alt="Quiz Time">
+                <div class="quiz_details">
+                    <h2>Course Name: Web Developement</h2>
+                    <h2>Course Code: WD381</h2>
+                    <p>Topic: HTML Basics</p>
+                    <p>Deadline: 11:59 PM, February 10, 2025</p>
+                    <p>Attempts Allowed: 1</p>
+                </div>
+                <h3>Question 1</h3>
+                <p>What does HTML stand for?</p>
+                <form class="answers">
+                    <div>
+                        <input type="radio" name="q1" id="q1a" value="Hyper Text Markup Language" />
+                        <label for="Hyper Text Markup Language">Hyper Text Markup Language</label>
+                    </div><div>
+                        <input type="radio" name="q1" id="q1b" value="Home Tool Markup Language" />
+                        <label for="Home Tool Markup Language">Home Tool Markup Language</label>
+                    </div>
+                </form>
+                <button class="submit_answer">Submit Answer</button>
+                <h3>Question 2</h3>
+                <p>Which of the following are HTML elements? (Select all that apply)</p>
+                <form class="answers">
+                    <div>
+                        <input type="checkbox" name="q2" id="q2a" value="<div>" /> 
+                        <label for="q2a">&lt;div&gt;</label>
+                    </div><div>
+                        <input type="checkbox" name="q2" id="q2b" value="<span>" />
+                        <label for="q2b">&lt;span&gt;</label>
+                    </div>
+                </form>
+                <button class="submit_answer">Submit Answer</button>
+                <button class="finish_quiz"><a href="leaderboard.html">Finish Quiz</a></button>
+            </div>
+        </main>
+        <footer><p>&copy; 2025 LMS. All rights reserved.</p></footer>
+    </body>
+</html>
