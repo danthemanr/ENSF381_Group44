@@ -3,15 +3,34 @@
     <head>
         <title>Sign Up - LMS</title>
     </head>
+    <link href="styles.css" type="text/css" rel="stylesheet" />
     <body>
         <header>
             <img src="images/logo.jpg" alt="LMS Logo" />
             <h1>LMS - Learning Management System</h1>
         </header>
         <div class="navbar">
-            <a></a>
+            <a href="index.html">Homepage</a>
         </div>
-        <main></main>
+        <main>
+            <div>
+                <h2>LMS Signup</h2>
+                <form id="signupform" class="entryform">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required/>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password", name="password" required/>
+                    <label for="password">Confirm Password:</label>
+                    <input type="password" id="confirmpassword", name="confirmpassword" required/>
+                    <label for="password">Password:</label>
+                    <input type="text" id="email", name="email" required/>
+                    <button id="signupbutton"><a href="login.html">Signup</a></button>
+                </form>
+                <div class="entrymessagebox"></div> <!--will be filled and formatted dynamically-->
+                <a href="login.html" id="signup" class="entrylink">Already have an account? Login here</a>
+            </div>
+        </main>
         <footer><p>&copy; 2025 LMS. All rights reserved.</p></footer>
+        <script></script>
     </body>
 </html>

@@ -17,17 +17,19 @@
         <main>
             <div>
                 <h2>LMS Login</h2>
-                <form id="loginform">
+                <form id="loginform" class="entryform">
                     <label for="username">Username:</label>
                     <input type="text" id="username" name="username" required/>
                     <label for="password">Password:</label>
                     <input type="password" id="password", name="password" required/>
                 </form>
                 <button id="loginbutton"><a href="course_view.html">Login</a></button>
-                <a href="login.html" id="forgotpassword">Forgot Password?</a>
-                <a href="signup.html" id="signup">Don't have an account? Sign Up</a>
+                <a href="login.html" id="forgotpassword" class="entrylink">Forgot Password?</a>
+                <a href="signup.html" id="signup" class="entrylink">Don't have an account? Sign Up</a>
+                <div class="entrymessagebox"></div> <!--will be filled and formatted dynamically-->
             </div>
         </main>
         <footer><p>&copy; 2025 LMS. All rights reserved.</p></footer>
+        <script></script>
     </body>
 </html>

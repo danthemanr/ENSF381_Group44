@@ -50,6 +50,7 @@ form{
     flex-direction: column;
     margin: 0px 150px;
     background-color: #cacaca;
+    align-items: center;
 }
 table{
     width: 100%;
@@ -67,36 +68,53 @@ button{
 button>a, button>a:hover{color: #fff; text-decoration: none;} /*remove this when the anchors are removed*/
 
 
-/*for login.html*/
-#loginform{
+/*for login.html and signup.html*/
+.entryform{
     padding: 30px;
     border-radius: 30px;
     box-shadow: 10px 20px 10px #cecece;
 }
-#loginform>label{
+.entryform>label{
     margin: 5px;
     font-size: 16px;
 }
-#loginform>input{
+.entryform>input{
     padding: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     border: 3px solid #aaa;
     border-radius: 5px;
     background-color: lightgoldenrodyellow;
 }
 #loginbutton{
     max-width: 100px;
-    margin: 20px;
+    margin: 10px;
     background-color: #008000;
 }
 #loginbutton:hover{
     background-color: #006600;
 }
-#forgotpassword{
+#signupbutton{
+    max-width: 100px;
+    margin: 10px;
+    background-color: #4CAF50;
+    opacity: 0.5;
+}
+#signupbutton:hover{
+    background-color: #45A049;
+    opacity: 1.0;
+}
+.entrymessagebox{
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 10px;
+}
+.entrymessagebox>*{margin: 10px;}
+.entrylink{
     color: #004080;
     text-decoration: none;
 }
-#forgotpassword:hover{
+.entrylink:hover{
     text-decoration: underline;
 }
 
