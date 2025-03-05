@@ -25,11 +25,11 @@
                         <option value="Spring 2024">Spring 2024</option>
                     </select>
                 </div>
-                <table>
-                    <tr><td colspan="3">
+                <table id="Enrolled Courses">
+                    <tr id="row0"><td colspan="3">
                         <h2>Enrolled Courses</h2><hr />
                     </td></tr>
-                    <tr>
+                    <tr id="row1">
                         <td class="tile">
                             <img src="images/course1.jpg" alt="Course Image" />
                             <p>Course Name: Web Development</p>
@@ -46,7 +46,7 @@
                             <p>Course Code: DB346</p>
                             <a href="attempt_quiz.html">Attempt Quiz</a>
                         </td>
-                    </tr><tr>
+                    </tr><tr id="row2">
                         <td class="tile">
                             <img src="images/course1.jpg" alt="Course Image" />
                             <p>Course Name: Software Testing</p>
@@ -59,27 +59,51 @@
                             <a href="attempt_quiz.html">Attempt Quiz</a>
                         </td>
                     </tr>
+                </table>
+                <table id = "Pending Invitations">
                     <tr><td colspan="3">
                         <h2>Pending Invitations</h2><hr />
                     </td></tr>
                     <tr>
-                        <td class="tile">
+                        <td class="tile" id="pending01">
                             <img src="images/course2.jpg" alt="Course Image" />
                             <p>Course Name: Data Science</p>
                             <p>Course Code: DS102</p>
-                            <button class="accept">Accept</button>
-                            <button class="decline">Decline</button>
-                        </td><td class="tile">
+                            <button class="accept" onclick="enroll('pending01')">Accept</button>
+                            <button class="decline" onclick="decline('pending01')">Decline</button>
+                        </td><td class="tile" id="pending02">
                             <img src="images/course2.jpg" alt="Course Image" />
                             <p>Course Name: Machine Learning</p>
                             <p>Course Code: ML105</p>
-                            <button class="accept">Accept</button>
-                            <button class="decline">Decline</button><td>
+                            <button class="accept" onclick="enroll('pending02')">Accept</button>
+                            <button class="decline" onclick="decline('pending02')">Decline</button><td>
                         </td>
                     </tr>
                 </table>
             </div>
         </main>
         <footer><p>&copy; 2025 LMS. All rights reserved.</p></footer>
+        <script>
+            function enroll(id) {
+                var thisCourse = document.getElementById(id);
+                var anchor = document.createElement("a");
+                anchor.textContent = "Attempt Quiz";
+                anchor.href = "attempt_quiz.html";
+                thisCourse.parentElement.removeChild(thisCourse);
+                thisCourse.removeChild(thisCourse.lastElementChild);
+                thisCourse.replaceChild(anchor, thisCourse.lastElementChild);
+                thisCourse.firstElementChild.src = "images/course1.jpg";
+                thisCourse.removeAttribute("id");
+                var courses = document.getElementById("Enrolled Courses");
+                if (courses.firstElementChild.lastElementChild.childElementCount >= 3) {
+                    courses.firstElementChild.appendChild(document.createElement("tr"));
+                }
+                courses.firstElementChild.lastElementChild.appendChild(thisCourse);
+            }
+            function decline(id) {
+                var thisCourse = document.getElementById(id);
+                thisCourse.parentElement.removeChild(thisCourse);
+            }
+        </script>
     </body>
 </html>
