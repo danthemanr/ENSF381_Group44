@@ -23,13 +23,42 @@
                     <label for="password">Password:</label>
                     <input type="password" id="password", name="password" required/>
                 </form>
-                <button id="loginbutton"><a href="course_view.html">Login</a></button>
+                <button id="loginbutton" type="submit" onclick="validateUser()">Login</button>
                 <a href="login.html" id="forgotpassword" class="entrylink">Forgot Password?</a>
                 <a href="signup.html" id="signup" class="entrylink">Don't have an account? Sign Up</a>
                 <div class="entrymessagebox"></div> <!--will be filled and formatted dynamically-->
             </div>
         </main>
         <footer><p>&copy; 2025 LMS. All rights reserved.</p></footer>
-        <script></script>
+        <script>
+            function message(msg_str, append=false) {
+                messagebox = document.getElementsByClassName("entrymessagebox")[0];
+                if (append || messagebox.childElementCount < 1) {
+                    messagebox.style="border: 1px solid black";
+                    messagebox.appendChild(document.createElement("p"));
+                }
+                messagebox.lastElementChild.textContent = msg_str
+            }
+            async function validateUser() {
+                try {
+                    const response = await fetch('https://jsonplaceholder.typicode.com/users');
+                    const data = await response.json();
+
+                    username = document.getElementById("username").value;
+                    password = document.getElementById("password").value;
+                    for (let user of data) {
+                        if (user.username == username) {
+                            if (user.email == password) {
+                                message("Login successful! Redirecting...");
+                                document.location.href = "course_view.html"; //I have no idea if this works
+                                return;
+                            } else {break;}
+                        }
+                    }
+                    message("Invalid username or password!");
+                } catch (error) {
+                    console.error('Error validating user data:', error);
+            }}
+        </script>
     </body>
 </html>

@@ -22,15 +22,108 @@
                     <input type="password" id="password", name="password" required/>
                     <label for="password">Confirm Password:</label>
                     <input type="password" id="confirmpassword", name="confirmpassword" required/>
-                    <label for="password">Password:</label>
+                    <label for="email">Email:</label>
                     <input type="text" id="email", name="email" required/>
-                    <button id="signupbutton"><a href="login.html">Signup</a></button>
+                    <button type="button" id="signupbutton" onClick="signUp()">Signup</button>
                 </form>
                 <div class="entrymessagebox"></div> <!--will be filled and formatted dynamically-->
                 <a href="login.html" id="signup" class="entrylink">Already have an account? Login here</a>
             </div>
         </main>
         <footer><p>&copy; 2025 LMS. All rights reserved.</p></footer>
-        <script></script>
+        <script>
+            function message(msg_str, append=true) {
+                messagebox = document.getElementsByClassName("entrymessagebox")[0];
+                if (append || messagebox.childElementCount < 1) {
+                    messagebox.style="border: 1px solid black";
+                    messagebox.appendChild(document.createElement("p"));
+                }
+                messagebox.lastElementChild.textContent = msg_str;
+            }
+            function signUp() {
+                arr1 = checkUsername(document.getElementById("username").value);
+                password1 = document.getElementById("password").value;
+                password2 = document.getElementById("confirmpassword").value;
+                arr2 = checkPassword(password1);
+                arr3 = checkEmail(document.getElementById("email").value); //FIXME is returning undefined
+                document.getElementsByClassName("entrymessagebox")[0].innerHTML = "";
+                if (!arr1[0]) {
+                    message(`Invalid username (Reason: ${arr1[1]})`);
+                }
+                if (!arr2[0]) {
+                    message(`Invalid password (Reason: ${arr2[1]})`);
+                }
+                if (password1 != password2) {
+                    message("Passwords do not match.")
+                }
+                if (!arr3[0]) {
+                    message(`Invalid email (Reason: ${arr3[1]})`);
+                }
+                if (arr1[0] && arr2[0] && arr3[0] && password1 == password2) {
+                    document.location.href = "login.html";
+                }
+            }
+            function checkUsername(username) {
+                var i = 0;
+                if (3>username.length || username.length>20) { //inclusivity was not specified
+                    return [false, "Username must be between 3 and 20 characters."];
+                }
+                if (!(64<username.charCodeAt(i)&&username.charCodeAt(i)<91 ||
+                96<username.charCodeAt(i)&&username.charCodeAt(i)<123)) {
+                    return [false, `Username should start with a letter.`];
+                }
+                while (i<username.length &&
+                    (47<username.charCodeAt(i)&&username.charCodeAt(i)<58 ||
+                    64<username.charCodeAt(i)&&username.charCodeAt(i)<91 ||
+                    96<username.charCodeAt(i)&&username.charCodeAt(i)<123 ||
+                    username.charAt(i)=='-' || username.charAt(i)=='_')
+                ) {i += 1;}
+                if (i>username.length) {
+                    return [false, `'${username.charAt(i)}' is not a valid character. Only numbers, letters, dashes, and underscores are accepted.`];
+                }
+                return [true, ""];
+            }
+            function checkPassword(password) {
+                if (password.length < 8) {
+                    return [false, "Password must be at least 8 characters long."];
+                }
+                var i = 0;
+                var u_case = false;
+                var l_case = false;
+                var num = false;
+                var special = false;
+                while (i<password.length) {
+                    if (47<password.charCodeAt(i)&&password.charCodeAt(i)<58) {
+                        num = true;
+                    } else if (64<password.charCodeAt(i)&&password.charCodeAt(i)<91) {
+                        c_case = true;
+                    } else if (96<password.charCodeAt(i)&&password.charCodeAt(i)<123) {
+                        l_case = true;
+                    } else if ("!@#$%^&*()-_=+[]{}|;:'\",.<>?/`~".includes(password.charAt(i))) {
+                        special = true;
+                    } else {
+                        return [false, `'${password.charAt(i)}' is not a valid character. valid special characters are !@#$%^&*()-_=+[]{}|;:'",.<>?/\`~`];
+                    }
+                }
+                return [true, ""];
+            }
+            function checkEmail(email) {
+                i = email.indexOf('@');
+                if (i == -1) {
+                    return [false, "Email must include @ symbol."];
+                } else if (i == 0) {
+                    return [false, "Email must have something before @."];
+                } else while (i < email.length && email.charAt(i) != '.') {
+                    i += 1;
+                }
+                if (email.includes(' ')) {
+                    return [false, "Email cannot have spaces."];
+                }
+                if (i >= email.length-1 || i<=email.indexOf('@')+1) {
+                    return [false, "Email must include a domain name."];
+                }
+                return [true];
+            }
+        </script>
     </body>
 </html>
