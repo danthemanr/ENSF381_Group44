@@ -78,7 +78,7 @@
                     96<username.charCodeAt(i)&&username.charCodeAt(i)<123 ||
                     username.charAt(i)=='-' || username.charAt(i)=='_')
                 ) {i += 1;}
-                if (i>username.length) {
+                if (i<username.length) {
                     return [false, `'${username.charAt(i)}' is not a valid character. Only numbers, letters, dashes, and underscores are accepted.`];
                 }
                 return [true, ""];
@@ -100,14 +100,22 @@
                     } else if (96<password.charCodeAt(i)&&password.charCodeAt(i)<123) {
                         l_case = true;
                     } else if ("!@#$%^&*()-_=+[]{}|;:'\",.<>?/`~".includes(password.charAt(i))) {
+                        console.log('.')
                         special = true;
                     } else {
                         return [false, `'${password.charAt(i)}' is not a valid character. valid special characters are !@#$%^&*()-_=+[]{}|;:'",.<>?/\`~`];
                     }
+                    i += 1;
                 }
-                return [true, ""];
+                if (u_case && l_case && num && special) {
+                    return [true, ""];
+                }
+                return [false, "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character."];
             }
             function checkEmail(email) {
+                if (email.includes(' ')) {
+                    return [false, "Email cannot have spaces."];
+                }
                 i = email.indexOf('@');
                 if (i == -1) {
                     return [false, "Email must include @ symbol."];
@@ -116,13 +124,10 @@
                 } else while (i < email.length && email.charAt(i) != '.') {
                     i += 1;
                 }
-                if (email.includes(' ')) {
-                    return [false, "Email cannot have spaces."];
-                }
                 if (i >= email.length-1 || i<=email.indexOf('@')+1) {
                     return [false, "Email must include a domain name."];
                 }
-                return [true];
+                return [true, ""];
             }
         </script>
     </body>
