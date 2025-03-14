@@ -24,10 +24,9 @@
                     <p>Topic: HTML Basics</p>
                     <p>Deadline: 11:59 PM, February 10, 2025</p>
                     <p>Attempts Allowed: 1</p>
-                    <div id = "timer"> Time Allowed: 10 Mins</div>
+                    <span id = "timer"> Time Allowed: 10 Mins</span>
                     <script>
-                        let timeRemaining = 600
-
+                        let timeRemaining = 600;
                         function updateTimer () {
                             if (timeRemaining > 1 ){
                                 timeRemaining -= 1;
@@ -44,13 +43,10 @@
                                 clearInterval(timer);
                             }          
                         }
-                
-                        
-
                         const timer = setInterval(updateTimer, 1000);
-                            
                     </script>
                 </div>
+
                 <h3>Question 1</h3>
                 <p>What does HTML stand for?</p>
                 <form class="answers">
@@ -63,7 +59,6 @@
                     </div>
                 </form>
                 <button class="submit_answer" onclick = "submitQ1()">Submit Answer</button>
-
 
                 <h3>Question 2</h3>
                 <p>Which of the following are HTML elements? (Select all that apply)</p>
@@ -79,42 +74,62 @@
                 <button class="submit_answer" onclick = "submitQ2()">Submit Answer</button>
 
                 <button class="finish_quiz"  onclick = "finishQuiz()">Finish Quiz</a></button>
-                <br>
-                <br>
-                <div id = "finalScore">Final Score: 0/100</div>
-
+                <label for="finalScore">Final Score:</label>
+                <span id = "finalScore">0/100</span>
                 <script>
+                    let q1Submitted = false;
+                    let q2Submitted = false;
+                    let totalScore = 0;
 
-                    function updateFinalScore(){
-                        finalScore = 0;
-                        finalScore += markQ1();
-                        finalScore += markQ2();
-                    
-                        document.getElementById("finalScore").textContent = "Final Score: " + finalScore +"/100"
-
-                    
-                    }
-                    
                     function submitQ1(){
-                        q1Status = validateQ1();
-                        updateFinalScore();
-                        return q1Status;
+                        if (!q1Submitted) { //if the question has not been submitted
+                            const options = document.getElementsByName("q1");
+                            for (let option of options){
+                                if(option.checked){
+                                    q1Submitted = true;
+                                    break;
+                                }
+                            }
+                            if (!q1Submitted) { //if the question was not valid
+                                alert("Please select an answer for Question 1.");
+                            } else { //the question submits successfully
+                                totalScore += markQ1();
+                                document.getElementById("finalScore").textContent = totalScore+"/100";
+                            }
+                        } else { //if the question has already been submitted
+                            alert("You have already submitted Question 1.");
+                        }
+                        return q1Submitted;
                     }
 
                     function submitQ2(){
-                        q2Status = validateQ2();
-                        updateFinalScore();
-                        return q2Status;
+                        if (!q2Submitted) { //if the question has not been submitted
+                            const options = document.getElementsByName("q2");
+                            for (let option of options){
+                                if(option.checked){
+                                    q2Submitted = true;
+                                    break;
+                                }
+                            }
+                            if (!q2Submitted) { //if the question was not valid
+                                alert("Please select an answer for Question 2.");
+                            } else { //the question submits successfully
+                                totalScore += markQ2();
+                                document.getElementById("finalScore").textContent = totalScore+"/100";
+                            }
+                        } else { //if the question has already been submitted
+                            alert("You have already submitted Question 2.");
+                        }
+                        return q2Submitted;
                     }
-                    
+
                     function markQ1(){
-                        let options = document.getElementsByName("q1");
-                        let correctAnswer = "Hyper Text Markup Language";
+                        const options = document.getElementsByName("q1");
+                        const correctAnswer = "Hyper Text Markup Language";
                         for (let option of options){
                             if(option.checked){
                                 if (option.value == correctAnswer){
-                                    let score = 50;
-                                    return score;
+                                    return 50;
                                 }
                             }
                         }
@@ -122,80 +137,29 @@
                     }
 
                     function markQ2(){
-                        var options = document.getElementsByName("q2");
-                        var correctAnswerCount = 0;
-                        var answers = ["<div>", "<span>"];
-                        var incorrectAnswer = false;
-    
-                        
+                        const options = document.getElementsByName("q2");
+                        const answers = ["<div>", "<span>"];
+                        var q2Score = 0;
                         for (let option of options){
                             if(option.checked){
                                 if(answers.includes(option.value)){
-                                    correctAnswerCount ++;
-                                }
-                                else{
-                                    incorrectAnswer = true;
+                                    q2Score += 25;
                                 }
                             }
                         }
-
-                        if (!incorrectAnswer){
-                            let score = (50 / answers.length) * correctAnswerCount;
-                            return score;
-                        }
-
-                        return 0;
-
-                    }
-
-                    function validateQ1(){
-                        let options = document.getElementsByName("q1");
-                        let selected = false;
-
-                        for (let option of options){
-                            if(option.checked){
-                                selected = true;
-                                break;
-                            }
-                        }
-                        if (!selected) {
-                            alert("Please select an answer for Question 1");
-                            return false;
-                        }
-                        else{
-                           alert("Question 1 submitted");
-                            return true; 
-                        }
-                    }
-
-                    function validateQ2(){
-                        let options = document.getElementsByName("q2")
-                        let selected = false;
-                        for (let option of options){
-                            if (option.checked){
-                                selected = true;
-                                break;
-                            }
-                        }
-                        
-                        if (!selected) {
-                            alert("Please select an answer for Question 2");
-                            return false;
-                        }
-                        else{
-                           alert("Question 2 submitted");
-                            return true; 
-                        }
-                        
+                        return q2Score;
                     }
 
                     function finishQuiz(){
-                        submitQ1();
-                        submitQ2();
-                        if (q1Status == true && q2Status == true){
+                        if (!q1Submitted) {
+                            submitQ1();
+                        }
+                        if (!q2Submitted) {
+                            submitQ2();
+                        }
+                        if (q1Submitted && q2Submitted){
                             window.location.href = "leaderboard.html";
                         }
-
                     }
                 </script>
             </div>

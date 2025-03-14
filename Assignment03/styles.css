@@ -183,6 +183,7 @@ select{
 .finish_quiz{
     margin-top: 10px;
     background-color: #D32F2F;
+    margin: 25px 0px;
 }
 .finish_quiz:hover{
     background-color: #821b1b;
