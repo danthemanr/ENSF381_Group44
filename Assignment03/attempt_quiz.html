@@ -24,6 +24,32 @@
                     <p>Topic: HTML Basics</p>
                     <p>Deadline: 11:59 PM, February 10, 2025</p>
                     <p>Attempts Allowed: 1</p>
+                    <div id = "timer"> Time Allowed: 10 Mins</div>
+                    <script>
+                        let timeRemaining = 600
+
+                        function updateTimer () {
+                            if (timeRemaining > 1 ){
+                                timeRemaining -= 1;
+                                if (timeRemaining >= 60){
+                                    document.getElementById("timer").textContent = "Time remaining: " + Math.floor(timeRemaining / 60).toString().padStart(2, "0") + ":" +(timeRemaining % 60).toString().padStart(2, "0");
+                                }
+                                else{
+                                    document.getElementById("timer").textContent = "Time remaining: " + timeRemaining.toString().padStart(2, "0");
+                                }
+                            }
+                            else{
+                                document.getElementById("timer").textContent = "Time's up";
+                                window.location.href = "leaderboard.html";
+                                clearInterval(timer);
+                            }          
+                        }
+                
+                        
+
+                        const timer = setInterval(updateTimer, 1000);
+                            
+                    </script>
                 </div>
                 <h3>Question 1</h3>
                 <p>What does HTML stand for?</p>
@@ -36,7 +62,9 @@
                         <label for="Home Tool Markup Language">Home Tool Markup Language</label>
                     </div>
                 </form>
-                <button class="submit_answer">Submit Answer</button>
+                <button class="submit_answer" onclick = "submitQ1()">Submit Answer</button>
+
+
                 <h3>Question 2</h3>
                 <p>Which of the following are HTML elements? (Select all that apply)</p>
                 <form class="answers">
@@ -48,8 +76,128 @@
                         <label for="q2b">&lt;span&gt;</label>
                     </div>
                 </form>
-                <button class="submit_answer">Submit Answer</button>
-                <button class="finish_quiz"><a href="leaderboard.html">Finish Quiz</a></button>
+                <button class="submit_answer" onclick = "submitQ2()">Submit Answer</button>
+
+                <button class="finish_quiz"  onclick = "finishQuiz()">Finish Quiz</a></button>
+                <br>
+                <br>
+                <div id = "finalScore">Final Score: 0/100</div>
+
+                <script>
+
+                    function updateFinalScore(){
+                        finalScore = 0;
+                        finalScore += markQ1();
+                        finalScore += markQ2();
+                    
+                        document.getElementById("finalScore").textContent = "Final Score: " + finalScore +"/100"
+
+                    
+                    }
+                    
+                    function submitQ1(){
+                        q1Status = validateQ1();
+                        updateFinalScore();
+                        return q1Status;
+                    }
+
+                    function submitQ2(){
+                        q2Status = validateQ2();
+                        updateFinalScore();
+                        return q2Status;
+                    }
+                    
+                    function markQ1(){
+                        let options = document.getElementsByName("q1");
+                        let correctAnswer = "Hyper Text Markup Language";
+                        for (let option of options){
+                            if(option.checked){
+                                if (option.value == correctAnswer){
+                                    let score = 50;
+                                    return score;
+                                }
+                            }
+                        }
+                        return 0;
+                    }
+
+                    function markQ2(){
+                        var options = document.getElementsByName("q2");
+                        var correctAnswerCount = 0;
+                        var answers = ["<div>", "<span>"];
+                        var incorrectAnswer = false;
+    
+                        
+                        for (let option of options){
+                            if(option.checked){
+                                if(answers.includes(option.value)){
+                                    correctAnswerCount ++;
+                                }
+                                else{
+                                    incorrectAnswer = true;
+                                }
+                            }
+                        }
+
+                        if (!incorrectAnswer){
+                            let score = (50 / answers.length) * correctAnswerCount;
+                            return score;
+                        }
+
+                        return 0;
+
+                    }
+
+                    function validateQ1(){
+                        let options = document.getElementsByName("q1");
+                        let selected = false;
+
+                        for (let option of options){
+                            if(option.checked){
+                                selected = true;
+                                break;
+                            }
+                        }
+                        if (!selected) {
+                            alert("Please select an answer for Question 1");
+                            return false;
+                        }
+                        else{
+                           alert("Question 1 submitted");
+                            return true; 
+                        }
+                    }
+
+                    function validateQ2(){
+                        let options = document.getElementsByName("q2")
+                        let selected = false;
+                        for (let option of options){
+                            if (option.checked){
+                                selected = true;
+                                break;
+                            }
+                        }
+                        
+                        if (!selected) {
+                            alert("Please select an answer for Question 2");
+                            return false;
+                        }
+                        else{
+                           alert("Question 2 submitted");
+                            return true; 
+                        }
+                        
+                    }
+
+                    function finishQuiz(){
+                        submitQ1();
+                        submitQ2();
+                        if (q1Status == true && q2Status == true){
+                            window.location.href = "leaderboard.html";
+                        }
+
+                    }
+                </script>
             </div>
         </main>
         <footer><p>&copy; 2025 LMS. All rights reserved.</p></footer>
