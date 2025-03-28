@@ -1,3 +1,8 @@
+import Header from './components/Header';
+import Footer from './components/Footer';
+import CourseCatalog from './components/CourseCatalog';
+import EnrollmentList from './components/EnrollmentList';
+
 function CoursesPage() {
     return(
         <div className="courses-page">
@@ -10,3 +15,5 @@ function CoursesPage() {
         </div>
     );
 }
+
+export default CoursesPage;

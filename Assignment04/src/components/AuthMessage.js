@@ -1,6 +1,6 @@
 function AuthMessage() {
-    return (
-        <></>
-    );
+  return (
+    <></>
+  );
 }
 export default AuthMessage;

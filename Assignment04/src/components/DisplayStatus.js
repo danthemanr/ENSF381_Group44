@@ -1,6 +1,6 @@
 function DisplayStatus() {
-    return (
-        <></>
-    );
+  return (
+    <></>
+  );
 }
 export default DisplayStatus;

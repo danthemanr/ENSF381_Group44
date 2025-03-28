@@ -2,6 +2,14 @@
   text-align: center;
 }
 
+.flexbox{
+  max-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px;
+  justify-content: space-around;
+}
+/*
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -36,3 +44,4 @@
     transform: rotate(360deg);
   }
 }
+*/

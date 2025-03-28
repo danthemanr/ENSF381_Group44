@@ -1,6 +1,6 @@
 function LoginForm() {
-    return (
-        <></>
-    );
+  return (
+    <></>
+  );
 }
 export default LoginForm;
