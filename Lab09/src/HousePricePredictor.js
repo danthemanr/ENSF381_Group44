@@ -10,14 +10,14 @@ export default function HousePricePredictor() {
   const [province, setProvince] = useState('');
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
-  const [term, setTerm] = useState('');
+  const [lease_term, setTerm] = useState('');
   const [type, setType] = useState('');
   const [beds, setBeds] = useState('');
   const [baths, setBaths] = useState('');
-  const [area, setArea] = useState('');
+  const [sq_feet, setArea] = useState('');
   const [furnishing, setFurnishing] = useState('');
-  const [smoking, setSmoking] = useState('off');
-  const [pets, setPets] = useState('off');
+  const [smoking, setSmoking] = useState(false);
+  const [pets, setPets] = useState(false);
 
   const [price, setPrice] = useState('0');
 
@@ -25,27 +25,14 @@ export default function HousePricePredictor() {
     event.preventDefault();
     console.log("sending an event");
   
-    const backendEndpoint = 'http://127.0.0.1:5000/predict_house_price';
+    const backendEndpoint = 'http://127.0.0.1:5001/predict_house_price';
     try {
       const response = await fetch(backendEndpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          'city':city,
-          'province':province,
-          'latitude':latitude,
-          'longitude':longitude,
-          'lease_term':term,
-          'type':type,
-          'beds':beds,
-          'baths':baths,
-          'sq_feet':area,
-          'furnishing':furnishing,
-          'smoking':smoking,
-          'pets':pets
-        }),
+        body: JSON.stringify({city, province, latitude, longitude, lease_term, type, beds, baths, sq_feet, furnishing, smoking, pets}),
         credentials: "include",
       });
 
@@ -83,17 +70,17 @@ export default function HousePricePredictor() {
         <label>Number of Baths:</label>
         <input id="baths" type="text" onChange={(e) => setBaths(e.target.value)}/>
         <label>Square Feet:</label>
-        <input id="qu_feet" type="text" onChange={(e) => setArea(e.target.value)}/>
+        <input id="sq_feet" type="text" onChange={(e) => setArea(e.target.value)}/>
         <label>Furnishing:</label>
-        <select id="furnishing" onChange={(e) => setFurnishing(e)}>
+        <select id="furnishing" onChange={(e) => setFurnishing(e.target.value)}>
           <option value="unfurnished">Unfurnished</option>
           <option value="partially">Partially Furnsihed</option>
           <option value="fully">Fully Furnished</option>
         </select>
         <label>Smoking:</label>
-        <input id="smoking" type="checkbox" onChange={(e) => setSmoking(e)}/>
+        <input id="smoking" type="checkbox" onChange={(e) => setSmoking(e.target.checked)}/>
         <label>Pets:</label>
-        <input id="pets" type="checkbox" onChange={(e) => setPets(e)}/>
+        <input id="pets" type="checkbox" onChange={(e) => setPets(e.target.checked)}/>
         <button id="predictButton" type="sumbit">Predict</button>
       </form>
       <Price price={price}/>

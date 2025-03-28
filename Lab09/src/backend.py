@@ -1,12 +1,14 @@
 from flask import Flask, render_template, request, jsonify, make_response
 from flask_cors import CORS
 import joblib
+import sklearn
 import pandas as pd
 
+sklearn
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}}, supports_credentials=True)
 
-@app.route('/validate_login', methods=['GET', 'OPTIONS', 'POST'])
+@app.route('/validate_login', methods=['OPTIONS', 'POST'])
 def validate_login():
     users = {
         'alice': 'password123',
@@ -20,6 +22,7 @@ def validate_login():
         'ivan': 'welcome1',
         'judy': 'password1',
     }
+
     if request.method == 'OPTIONS':
         response = make_response()
         response.headers["Access-Control-Allow-Origin"] = "http://localhost:3000"
@@ -27,27 +30,27 @@ def validate_login():
         response.headers["Access-Control-Allow-Methods"] = "POST, OPTIONS"
         response.headers["Access-Control-Allow-Headers"] = "Content-Type"
         return response, 204
-    elif request.method == 'GET':
-        return jsonify(users)
+
     data = request.get_json()
-    if users[data['username']] == data['password']:
-        response = jsonify({'success':True, 'msg':'login successful'})
+    if users.get(data["username"]) == data["password"]:
+        response = jsonify({'success': True, 'msg': 'Login successful'})
     else:
-        response = jsonify({'success':False, 'msg':'incorrect username or password'})
-    response.headers.add["Access-Control-Allow-Origin"] = "http://localhost:3000"
-    response.headers.add["Access-Control-Allow-Credentials"] = "true"
+        response = jsonify({'success': False, 'msg': 'Incorrect username or password'})
+    response.headers["Access-Control-Allow-Origin"] = "http://localhost:3000"
+    response.headers["Access-Control-Allow-Credentials"] = "true"
     return response
+
 
 @app.route('/predict_house_price', methods=['OPTIONS', 'POST'])
 def predict_house_price():
     if request.method == 'OPTIONS':
         response = jsonify({"message": "CORS preflight passed"})
-        response.headers.add("Access-Control-Allow-Origin", "http://localhost:3000")
-        response.headers.add("Access-Control-Allow-Credentials", "true")
-        response.headers.add("Access-Control-Allow-Methods", "POST, OPTIONS")
-        response.headers.add("Access-Control-Allow-Headers", "Content-Type")
+        response.headers["Access-Control-Allow-Origin"] = "http://localhost:3000"
+        response.headers["Access-Control-Allow-Credentials"] = "true"
+        response.headers["Access-Control-Allow-Methods"] = "POST, OPTIONS"
+        response.headers["Access-Control-Allow-Headers"] = "Content-Type"
         return response, 204
-    model = joblib.load("./random_forest_model.pkl")
+    model = joblib.load("./src/random_forest_model.pkl")
     data = request.json
     cats = True if 'pets' in data and data['pets'] else False
     dogs = True if 'pets' in data and data['pets'] else False
@@ -72,7 +75,10 @@ def predict_house_price():
     'smoking', 'cats', 'dogs'
     ])
     predicted_price = model.predict(sample_df)
-    return jsonify({"predicted_price": float(predicted_price[0])})
+    response = jsonify({"predicted_price": float(predicted_price[0])})
+    response.headers["Access-Control-Allow-Origin"] = "http://localhost:3000"
+    response.headers["Access-Control-Allow-Credentials"] = "true"
+    return response
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=5001)

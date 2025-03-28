@@ -23,34 +23,34 @@ export default function Login() {
   async function handleSubmit(event) {
     event.preventDefault();
   
-    const backendEndpoint = 'http://127.0.0.1:5000/validate_login';
-    const newMsgs = msgs.slice();
+    const backendEndpoint = "http://127.0.0.1:5001/validate_login";
+  
     try {
       const response = await fetch(backendEndpoint, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({'username':username, 'password':password}),
-        credentials: "include",
+        body: JSON.stringify({ username, password }),
+        credentials: "include",  // ✅ This is correct
       });
-
+  
       const data = await response.json();
   
       if (response.ok) {
         console.log(data);
-        console.log('Form submitted successfully!');
+        console.log("Form submitted successfully!");
         setMsgs(data.msg);
         if (data.success) {
-          navigate('/predict')
+          navigate("/predict");
         }
       } else {
-        console.error('Form submission failed.');
+        console.error("Form submission failed.");
         setMsgs(`${data.success}: ${data.msg}`);
       }
     } catch (error) {
-      console.error('Error during form submission:', error);
-      setMsgs('Form submission failed.');
+      console.error("Error during form submission:", error);
+      setMsgs("Form submission failed.");
     }
   }
 
