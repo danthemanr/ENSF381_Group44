@@ -1,0 +1,31 @@
+.Login{
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    align-self: center;
+    max-width: 400px;
+    padding: 1rem;
+    border: light;
+    border-radius: 1rem;
+    box-shadow: 10px 10px 10px #eee;
+}
+#loginForm{
+    display: flex;
+    flex-direction: column;
+}
+#loginForm>input{
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+}
+#loginButton{
+    background-color: #007BFF;
+    color: #fff;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+}
+#loginButton:hover{
+    background-color: #0044CC;
+}
+.messageBox *{
+    color: red;
+}
