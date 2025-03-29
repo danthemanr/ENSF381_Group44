@@ -1,20 +1,28 @@
 import courses from '../data/courses';
 import course1 from '../images/course1.jpg';
+import { useEffect, useState } from 'react';
 import './course.css';
 
-function decrementEnrollment() {} //TODO
+function EnrolledCourse({course, creditHours}) {
+  const [enrollmentCount, setEnrollmentCount] = useState(Math.floor(10 + Math.random() * (100-10)));
+  const [display, setDisplay] = useState(true);
 
-function EnrolledCourse({id}) {
-  for (let course of courses) {
-    if (course.id==id) {
-      return (
-        <div className="course">
-          <h4>Course Name: {course.name}</h4>
-          <p>Credit Hours: {/*TODO*/}</p>
-          <button className="drop" onClick={decrementEnrollment()}>Drop Course</button>
-        </div>
-      );
+  useEffect(() => {
+    console.log("Enrollment Count:", enrollmentCount);
+    if (enrollmentCount<=0) {
+      setDisplay(false);
     }
+  }, [enrollmentCount]);
+  if (!display) {
+    return <div></div>
+  } else {
+    return (
+      <div>
+        <h4>Course Name: {course.name}</h4>
+        <p>Credit Hours: {creditHours}</p>
+        <button onClick={() => setEnrollmentCount(enrollmentCount-1)}>Drop Course</button>
+      </div>
+    );
   }
 }
 

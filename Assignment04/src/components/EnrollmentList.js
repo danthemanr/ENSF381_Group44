@@ -1,14 +1,19 @@
 import courses from '../data/courses';
 import EnrolledCourse from './EnrolledCourse';
-import {useEffect} from 'react'; //TODO
 
 function EnrollmentList() {
-  //TODO: maybe only display enrolled courses
+  var total = 0;
+  var hourCredits = [];
+  for (let course of courses) {
+    var temp = Math.floor(1 + Math.random() * (200-1));
+    total = total + temp;
+    hourCredits.push(temp);
+  }
+  var i = 0
   return (
     <div>
-      <h3>Enrolled Courses</h3>
-      <p>Total Credit Hours: {/*TODO*/}</p>
-      <div className="flexbox">{courses.map((c) => <EnrolledCourse id={c.id} />)}</div>
+      <p>Total Credit Hours: {total}</p>
+      <div>{courses.map((c) => <EnrolledCourse course={c} creditHours={hourCredits[i++]} />)}</div>
     </div>
   );
 }

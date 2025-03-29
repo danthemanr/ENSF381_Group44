@@ -1,10 +1,12 @@
-import CourseItem from './CourseItem';
 import courses from '../data/courses';
 import testimonials from '../data/testimonials';
+import React, { useEffect, useState } from 'react';
+import CourseItem from './CourseItem';
+import {createRoot} from 'react-dom/client';
 import './MainSection.css';
 
-function RandTestimonial({}) {
-  const t = testimonials[randint(0,testimonials.length)];
+function RandTestimonial({index}) {
+  const t = testimonials[index];
   var stars = '';
   for (let i=0; i<5; i++) {
     if (i<t.rating) {
@@ -14,11 +16,11 @@ function RandTestimonial({}) {
     }
   }
   return (
-    <div className="testimonial">
+    <div>
       <h4>Course: {t.courseName}</h4>
-      <p className='stars'>{stars}</p>
+      <p>{stars}</p>
       <p>"{t.review}"</p>
-      <p className="testifier"> - {t.studentName}</p>
+      <p> - {t.studentName}</p>
     </div>
   );
 }
@@ -28,13 +30,13 @@ function Courses() {
   var num2 = randint(1,courses.length+1);
   var num3 = randint(1,courses.length+1);
   while (num2 == num1) {
-    num2 = randint(1,courses.length);
+    num2 = randint(1,courses.length+1);
   }
   while (num3 == num2 || num3 == num1) {
-    num3 = randint(1,courses.length);
+    num3 = randint(1,courses.length+1);
   }
   return (
-    <div className="flexbox">
+    <div>
       <CourseItem id={num1}/>
       <CourseItem id={num2}/>
       <CourseItem id={num3}/>
@@ -47,9 +49,18 @@ function randint(low, high) {
 }
 
 function MainSection() {
+  const [indexes, setIndexes] = useState([0,1]);
+  useEffect(() => {
+    var num1 = randint(0,testimonials.length);
+    var num2 = randint(0,testimonials.length);
+    while (num2 == num1) {
+      num2 = randint(0,testimonials.length);
+    }
+    setIndexes([num1, num2]);
+  }, []);
   return (
-    <main className="MainSection">
-      <div id="about">
+    <main>
+      <div>
         <h2>About LMS</h2>
         <span>
           The Learning Management System (LMS) helps students and instructors manage 
@@ -68,9 +79,9 @@ function MainSection() {
       </div>
       <div>
         <h2>Testimonials</h2>
-        <div className="flexbox">
-          <RandTestimonial />
-          <RandTestimonial />
+        <div>
+          <RandTestimonial index={indexes[0]}/>
+          <RandTestimonial index={indexes[1]}/>
         </div>
       </div>
     </main>

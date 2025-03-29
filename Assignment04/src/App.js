@@ -29,7 +29,7 @@ function App() {
 */
 function App() {
   return(
-    <BrowserRouter className="navbar">
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Homepage />}>Home</Route>
         <Route path="/courses" element={<CoursesPage />}>Courses</Route>

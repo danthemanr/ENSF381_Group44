@@ -1,3 +1,9 @@
+/*
+Jason Nguyen
+30209015
+Daniel Rey
+30216790
+*/
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
