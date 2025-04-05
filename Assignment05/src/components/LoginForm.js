@@ -27,13 +27,13 @@ const LoginForm = () => {
       const data = await response.json();
 
       if (data.success) {
-        login(data.success);
+        login(data.info);
         // Redirect after 2 seconds
         setTimeout(() => {
           navigate('/courses');
         }, 2000);
       } else {
-        setError(data.msg);
+        setError(data.info);
       }
     } catch (err) {
       setError('Failed to connect to the server. Please try again later.');
