@@ -6,9 +6,10 @@ import random
 app = Flask(__name__)
 CORS(app)
 
+keys = ['id',     'username',     'password',     'email',                  'enrolled_courses']
 students = {
-x[1]: {'id':x[0], 'username':x[1],'password':x[2],'email':x[3],             'enrolled_courses':x[4],} for x in [
-    (111_111_111, 'dan',          'Qq`11111',     'danthemanr123@gmail.com',{4, 3, 7, 1, 6, 10})
+x[1]:{keys[0]:x[0],keys[1]:x[1],  keys[2]:x[2],   keys[3]:x[3],             keys[4]:x[4],} for x in [
+    (111_111_111, 'dan',          'Qq`11111',     'danthemanr123@gmail.com',{4, 3, 7, 1, 6, 10}),
     (874_278_597, 'alice',        'Password123!', 'alice108@melissa.tv',    {5, 8, 7}),
     (572_155_615, 'bob',          'Secure456@',   'bob964@april.biz',       {5}),
     (183_252_382, 'charlie',      'Qwerty789#',   'charlie761@billy.biz',   {10, 2, 1}),
@@ -21,29 +22,51 @@ x[1]: {'id':x[0], 'username':x[1],'password':x[2],'email':x[3],             'enr
     (381_692_650, 'judy',         'password1-',   'judy416@yesenia.net',    {5, 3, 9}),
     ]
 }
-findStudent = {x['id']:x['username'] for x in students}
+findStudent = {x['id']:x['username'] for x in students.values()}
+
+def student_str(name, j=False, q=False):
+    #j justifies the fields
+    #q puts quotes around the keys
+    s = students[name]
+    return f"{{{' '.join([f"{repr(k)if q else k}:{((repr(s[k])if type(s[k])!=set else f"{{{','.join([str(c)for c in s[k]])}}}")+(','if type(s[k])!=set else '')).ljust(max([len(repr(s[k]))+1 if type(s[k])!=set else len(f"{{{','.join([str(c)for c in s[k]])}}}")for s in students.values()]))if j else (repr(s[k])if type(s[k])!=set else f"{{{','.join([str(c)for c in s[k]])}}}")+(','if type(s[k])!=set else '')}"for k in keys])}}}"
+def printStudents(student_list=None):
+    if student_list:
+        print(f"students:\n  {',\n  '.join([student_str(n, j=True) for n in student_list])}")
+    else:
+        print(f"students:\n  {',\n  '.join([student_str(n, j=True) for n in students])}")
+printStudents()
+
 def add_student(data):
-    newStudent = {}
-    for key in data: #should have username, password, and email
-        newStudent[key] = data[key]
-    newStudent['id'] = random.randrange(100_000_000, 1000_000_000)
-    newStudent['enrolled_courses'] = []
-    students.append(newStudent)
-    findStudent['id'] = newStudent['username']
-    return id
+    if type(data) == dict:
+        if 'username' not in data or 'password' not in data or 'email' not in data:
+            raise KeyError(f"argument data to add_student() missing required key(s): {', '.join([repr(k) for k in ['username', 'password', 'email']if k not in data])}")
+        elif len(data)!=3:
+            raise KeyError(f"argument data to add_student() should not have extra keys: {', '.join([repr(k) for k in data.keys() if k not in ['username', 'password', 'email']])}")
+        newStudent = {}
+        for key in data: #should have username, password, and email
+            newStudent[key] = data[key]
+        newStudent['id'] = random.randrange(100_000_000, 1000_000_000)
+        newStudent['enrolled_courses'] = set()
+        students[data['username']] = newStudent
+        findStudent['id'] = newStudent['username']
+        print("Student added:", student_str(data['username']))
+        return id
+    else:
+        raise TypeError(f"add_student was passed a value of type {type(data)}")
 
 @app.route('/register', methods=['POST'])
 def register():
+    #requires request.get_json() has keys 'username', 'password', 'email'
     data = request.get_json()
     for username in students:
         if username == data['username']:
             return jsonify({'success': False, 'msg': f'The username {data['username']} is already taken'})
     id = add_student(data)
-    print("Student added:", students[data['username']])
     return jsonify({'success': True, 'msg': f'You have been successfully registered! Your id is {id}'})
 
-@app.route('/login', methods=['POST']) #TODO: LoginForm.js needs to be modified
+@app.route('/login', methods=['POST'])
 def login():
+    #requires request.get_json() has keys 'username', 'password', 'email'
     data = request.get_json()
     try:
         if students[data['username']]['password'] == data['password']:
@@ -61,6 +84,7 @@ def testimonials():
 
 @app.route('/enroll/<student_id>', methods=['POST']) #TODO: CoursePage.js needs to be modified
 def enroll(student_id):
+    #requires request.getjson()['course'] in range(1,11)
     username = findStudent[student_id]
     if username not in students:
         return jsonify({'success': False, 'msg': 'Invalid student id'})
@@ -76,8 +100,9 @@ def enroll(student_id):
     else:
         return jsonify({'success': True, 'msg': f'Already enrolled in {courses[course_id]}'})
 
-@app.route('/drop/<student_id>', methods=['DELETE'])
+@app.route('/drop/<student_id>', methods=['DELETE']) #TODO: CoursePage.js needs to be modified
 def drop(student_id):
+    #requires request.getjson()['course'] in range(1,11)
     username = findStudent[student_id]
     if username not in students:
         return jsonify({'success': False, 'msg': 'Invalid student id'})
@@ -97,7 +122,7 @@ def drop(student_id):
 def courses():
     ...
 
-@app.route('/student_courses/<student_id>', methods=['GET'])
+@app.route('/student_courses/<student_id>', methods=['GET']) #TODO: CoursePage.js needs to be modified
 def student_courses(student_id):
     student = students[findStudent[student_id]]
     with open('courses.json', 'r') as f:
