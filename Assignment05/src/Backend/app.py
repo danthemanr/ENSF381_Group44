@@ -1,3 +1,5 @@
+# Jason  Nguyen 30209015
+# Daniel Rey    30216790
 from flask import Flask, render_template, request, jsonify
 import json
 from flask_cors import CORS

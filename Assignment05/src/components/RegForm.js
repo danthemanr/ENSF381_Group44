@@ -100,7 +100,7 @@ const RegForm = () => {
     setError(newError);
 
     if (error == ['', '', '', '']) {
-      const backendEndpoint = 'http:127.0.0.1/5001/register';
+      const backendEndpoint = 'http://127.0.0.1/5001/register';
       
       try {
         const response = await fetch(backendEndpoint, {
@@ -121,6 +121,7 @@ const RegForm = () => {
         }
       } catch (err) {
         newError[0] = 'Failed to connect to the server. Please try again later.';
+        console.log(err);
       } finally {
         setError(newError);
         setIsLoading(false);

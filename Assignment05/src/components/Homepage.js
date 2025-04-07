@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Header from './Header';
 import Footer from './Footer';
-import courses from '../data/courses';
-import testimonials from '../data/testimonials';
 
 const Homepage = () => {
   const [featuredCourses, setFeaturedCourses] = useState([]);
   const [randomTestimonials, setRandomTestimonials] = useState([]);
 
-  //load courses
-  useEffect(async () => {
-    const backendEndpoint = 'http:127.0.0.1/5001/courses';
+  const loadCourses = async () => {
+    const backendEndpoint = 'http://127.0.0.1/5001/courses';
     try {
       const response = await fetch(backendEndpoint, {
         method: "GET",
@@ -26,15 +23,15 @@ const Homepage = () => {
           console.log('response from backend contained no courses')
         }
       } else {
-        console.err('response for courses was not ok')
+        console.log('response for courses was not ok')
       }
     } catch (err) {
-      console.err('failed to load courses from server');
+      console.log('failed to load courses from server');
     }
-  }, []);
-  //load testimonials
-  useEffect(async () => {
-    const backendEndpoint = 'http:127.0.0.1/5001/testimonials';
+  }
+  useEffect(() => {loadCourses();}, []);
+  const loadTestimonials = async () => {
+    const backendEndpoint = 'http://127.0.0.1/5001/testimonials';
     try {
       const response = await fetch(backendEndpoint, {
         method: "GET",
@@ -47,15 +44,16 @@ const Homepage = () => {
         const shuffledTestimonials = [...testimonials].sort(() => 0.5 - Math.random());
         setRandomTestimonials(shuffledTestimonials.slice(0, 2));
         if (testimonials==[]) {
-          console.log('response from backend contained no courses')
+          console.log('response from backend contained no testimonials');
         }
       } else {
-        console.err('response for courses was not ok')
+        console.log('response for testimonials was not ok');
       }
     } catch (err) {
-      console.err('failed to load courses from server');
+      console.log('failed to load testimonials from server', err);
     }
-  }, []);
+  }
+  useEffect(() => {loadTestimonials();}, []);
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>

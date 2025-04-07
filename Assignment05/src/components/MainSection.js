@@ -1,14 +1,11 @@
 import { useEffect, useState } from 'react';
-import courses from '../data/courses';
-import testimonials from '../data/testimonials';
 
 const MainSection = () => {
   const [featuredCourses, setFeaturedCourses] = useState([]);
   const [randomTestimonials, setRandomTestimonials] = useState([]);
 
-  //load courses
-  useEffect(async () => {
-    const backendEndpoint = 'http:127.0.0.1/5001/courses';
+  const loadCourses = async () => {
+    const backendEndpoint = 'http://127.0.0.1/5001/courses';
     try {
       const response = await fetch(backendEndpoint, {
         method: "GET",
@@ -20,18 +17,18 @@ const MainSection = () => {
       if (response.ok) {
         setFeaturedCourses([...courses].sort(() => 0.5 - Math.random()).slice(0, 3));
         if (courses==[]) {
-          console.log('response from backend contained no courses')
+          console.log('response from backend contained no courses');
         }
       } else {
-        console.err('response for courses was not ok')
+        console.log('response for courses was not ok');
       }
     } catch (err) {
-      console.err('failed to load courses from server');
+      console.log('failed to load courses from server', err);
     }
-  }, []);
-  //load testimonials
-  useEffect(async () => {
-    const backendEndpoint = 'http:127.0.0.1/5001/testimonials';
+  }
+  useEffect(() => {loadCourses();}, []);
+  const loadTestimonials = async () => {
+    const backendEndpoint = 'http://127.0.0.1/5001/testimonials';
     try {
       const response = await fetch(backendEndpoint, {
         method: "GET",
@@ -46,12 +43,13 @@ const MainSection = () => {
           console.log('response from backend contained no courses')
         }
       } else {
-        console.err('response for courses was not ok')
+        console.log('response for courses was not ok')
       }
     } catch (err) {
-      console.err('failed to load courses from server');
+      console.log('failed to load courses from server');
     }
-  }, []);
+  }
+  useEffect(() => {loadTestimonials();}, []);
 
   return (
     <main>

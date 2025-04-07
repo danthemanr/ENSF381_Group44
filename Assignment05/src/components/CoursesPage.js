@@ -4,7 +4,7 @@ import Footer from './Footer';
 import CourseItem from './CourseItem';
 import EnrollmentList from './EnrollmentList';
 import { useAuth } from '../context/AuthContext'; //I have no idea what I'm doing with this
-//import courses from '../data/courses';
+
 
 const CoursesPage = () => {
   const { user } = useAuth();
@@ -12,9 +12,8 @@ const CoursesPage = () => {
   const [prevEnrollments, setPrevEnrollments] = useState([]);
   const [enrolledCourses, setEnrolledCourses] = useState([]);
 
-  //load courses
-  useEffect(async () => {
-    const backendEndpoint = 'http:127.0.0.1/5001/courses';
+  const loadCourses = async () => {
+    const backendEndpoint = 'http://127.0.0.1/5001/courses';
     try {
       const response = await fetch(backendEndpoint, {
         method: "GET",
@@ -29,17 +28,17 @@ const CoursesPage = () => {
           console.log('response from backend contained no courses')
         }
       } else {
-        console.err('response for courses was not ok')
+        console.log('response for courses was not ok')
       }
     } catch (err) {
-      console.err('failed to load courses from server');
+      console.log('failed to load courses from server');
     }
-  }, [])
+  }
+  useEffect(() => {loadCourses();}, []);
 
-  //load student courses
-  useEffect(async () => {
+  const loadStudentCourses = async () => {
     if (user) {
-      const backendEndpoint = `http:127.0.0.1/5001/student_courses/${user.id}`;
+      const backendEndpoint = `http://127.0.0.1/5001/student_courses/${user.id}`;
       try {
         const response = await fetch(backendEndpoint, {
           method: "GET",
@@ -55,22 +54,23 @@ const CoursesPage = () => {
             console.log('response from backend contained no student courses')
           }
         } else {
-          console.err('response for courses was not ok')
+          console.log('response for courses was not ok')
         }
       } catch (err) {
-        console.err('failed to load courses from server');
+        console.log('failed to load courses from server');
       }
     } else {
       console.log("user is not logged in");
     }
-  }, []);
+  }
+  useEffect(() => {loadStudentCourses();}, []);
   
   //enroll of drop courses
-  useEffect(async () => {
+  const changeCourses = async () => {
     if (user) {
       if (enrolledCourses.length-prevEnrollments.length==1 || prevEnrollments.length-enrolledCourses.length==1) {
         const add = enrolledCourses.length > prevEnrollments.length
-        const backendEndpoint = add ? `http:127.0.0.1/5001/enroll/${user.id}` : `http:127.0.0.1/5001/drop/${user.id}`;
+        const backendEndpoint = add ? `http://127.0.0.1/5001/enroll/${user.id}` : `http://127.0.0.1/5001/drop/${user.id}`;
         const course = add ? enrolledCourses[enrolledCourses.length-1] : prevEnrollments.find((e) => !enrolledCourses.includes(e));
         try {
           const response = await fetch(backendEndpoint, {
@@ -84,19 +84,20 @@ const CoursesPage = () => {
           if (data.success) {
             console.log(data.info)
           } else {
-            console.err(data.info);
+            console.log(data.info);
           }
         } catch (err) {
-          console.err('Failed to connect to the server. Please try again later.');
+          console.log('Failed to connect to the server.', err);
         }
       } else {
-        console.log("enrolledCourses changed by more than one course")
+        console.log("enrolledCourses changed by more than one course");
       }
     } else {
       console.log("user is not logged in");
     }
     setPrevEnrollments(enrolledCourses);
-  }, [enrolledCourses]);
+  }
+  useEffect(() => {changeCourses();}, [enrolledCourses]);
 
   const handleEnroll = async (course) => {
     setEnrolledCourses(prev => [...prev, { 
