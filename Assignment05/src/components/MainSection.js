@@ -6,10 +6,51 @@ const MainSection = () => {
   const [featuredCourses, setFeaturedCourses] = useState([]);
   const [randomTestimonials, setRandomTestimonials] = useState([]);
 
-  useEffect(() => {
-    // Randomize courses and testimonials
-    setFeaturedCourses([...courses].sort(() => 0.5 - Math.random()).slice(0, 3));
-    setRandomTestimonials([...testimonials].sort(() => 0.5 - Math.random()).slice(0, 2));
+  //load courses
+  useEffect(async () => {
+    const backendEndpoint = 'http:127.0.0.1/5001/courses';
+    try {
+      const response = await fetch(backendEndpoint, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const courses = await response.json();
+      if (response.ok) {
+        setFeaturedCourses([...courses].sort(() => 0.5 - Math.random()).slice(0, 3));
+        if (courses==[]) {
+          console.log('response from backend contained no courses')
+        }
+      } else {
+        console.err('response for courses was not ok')
+      }
+    } catch (err) {
+      console.err('failed to load courses from server');
+    }
+  }, []);
+  //load testimonials
+  useEffect(async () => {
+    const backendEndpoint = 'http:127.0.0.1/5001/testimonials';
+    try {
+      const response = await fetch(backendEndpoint, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const testimonials = await response.json();
+      if (response.ok) {
+        setRandomTestimonials([...testimonials].sort(() => 0.5 - Math.random()).slice(0, 2));
+        if (testimonials==[]) {
+          console.log('response from backend contained no courses')
+        }
+      } else {
+        console.err('response for courses was not ok')
+      }
+    } catch (err) {
+      console.err('failed to load courses from server');
+    }
   }, []);
 
   return (

@@ -78,7 +78,7 @@ def login():
     except:
         return jsonify({'success': False, 'info': 'Server side error, try again later'})
 
-@app.route('/testimonials', methods=['GET']) #TODO: Homepage.js needs to be modified
+@app.route('/testimonials', methods=['GET']) #TODO: Homepage.js and MainSection.js needs to be debugged
 def testimonials():
     ...
 
@@ -118,7 +118,7 @@ def drop(student_id):
         students[username]['enrolled_courses'].remove(course_id)
         return jsonify({'success': True, 'info': f'Successfuly dropped {courses[course_id]}'})
 
-@app.route('/courses', methods=['GET']) #TODO: Homepage.js needs to be modified and CoursePage.js needs to be debugged
+@app.route('/courses', methods=['GET']) #TODO: Homepage.js, MainSection.js, and CoursePage.js need to be debugged
 def courses():
     ...
 
