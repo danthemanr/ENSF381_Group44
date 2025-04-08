@@ -3,17 +3,20 @@ import Header from './Header';
 import Footer from './Footer';
 import CourseItem from './CourseItem';
 import EnrollmentList from './EnrollmentList';
-import { useAuth } from '../context/AuthContext'; //I have no idea what I'm doing with this
+import { useAuth } from '../context/AuthContext';
 
 
 const CoursesPage = () => {
   const { user } = useAuth();
   const [courses, setCourses] = useState([]);
-  const [prevEnrollments, setPrevEnrollments] = useState([]);
-  const [enrolledCourses, setEnrolledCourses] = useState([]);
+  const [prevEnrollments, setPrevEnrollments] = useState(() => []);
+  const [enrolledCourses, setEnrolledCourses] = useState(() => {
+    const saved = localStorage.getItem('enrollments');
+    return (saved && saved !== "undefined") ? JSON.parse(saved) : [];
+  });
 
   const loadCourses = async () => {
-    const backendEndpoint = 'http://127.0.0.1/5001/courses';
+    const backendEndpoint = 'http://127.0.0.1:5001/courses';
     try {
       const response = await fetch(backendEndpoint, {
         method: "GET",
@@ -22,11 +25,10 @@ const CoursesPage = () => {
         },
       });
       const data = await response.json();
-      if (response.ok) {
+      if (response.ok && Array.isArray(data) && data.length > 0) {
         setCourses(data);
-        if (data==[]) {
-          console.log('response from backend contained no courses')
-        }
+      } else if (Array.isArray(data) && data.length === 0) {
+        console.log('response from backend contained no courses')
       } else {
         console.log('response for courses was not ok')
       }
@@ -38,7 +40,7 @@ const CoursesPage = () => {
 
   const loadStudentCourses = async () => {
     if (user) {
-      const backendEndpoint = `http://127.0.0.1/5001/student_courses/${user.id}`;
+      const backendEndpoint = `http://127.0.0.1:5001/student_courses/${user.id}`;
       try {
         const response = await fetch(backendEndpoint, {
           method: "GET",
@@ -47,30 +49,30 @@ const CoursesPage = () => {
           },
         });
         const data = await response.json();
-        if (response.ok) {
-          setEnrolledCourses(data);
+        if (response.ok && Array.isArray(data) && data.length > 0) {
+          var i = 0;
+          setEnrolledCourses(data.map(item => ({ ...item, enrollmentId: Date.now()+(i++)})));
           setPrevEnrollments(enrolledCourses);
-          if (data==[]) {
-            console.log('response from backend contained no student courses')
-          }
+        } else if (Array.isArray(data) && data.length === 0) {
+          console.log('response from backend contained no student courses')
         } else {
-          console.log('response for courses was not ok')
+          console.log('response for student courses was not ok')
         }
       } catch (err) {
-        console.log('failed to load courses from server');
+        console.log('failed to load student courses from server');
       }
     } else {
       console.log("user is not logged in");
     }
   }
-  useEffect(() => {loadStudentCourses();}, []);
+  useEffect(() => {loadStudentCourses();}, [user]);
   
   //enroll of drop courses
   const changeCourses = async () => {
     if (user) {
       if (enrolledCourses.length-prevEnrollments.length==1 || prevEnrollments.length-enrolledCourses.length==1) {
         const add = enrolledCourses.length > prevEnrollments.length
-        const backendEndpoint = add ? `http://127.0.0.1/5001/enroll/${user.id}` : `http://127.0.0.1/5001/drop/${user.id}`;
+        const backendEndpoint = add ? `http://127.0.0.1:5001/enroll/${user.id}` : `http://127.0.0.1:5001/drop/${user.id}`;
         const course = add ? enrolledCourses[enrolledCourses.length-1] : prevEnrollments.find((e) => !enrolledCourses.includes(e));
         try {
           const response = await fetch(backendEndpoint, {
@@ -81,7 +83,7 @@ const CoursesPage = () => {
             body: JSON.stringify({ ...course }),
           });
           const data = await response.json();
-          if (data.success) {
+          if (response.ok && data.success) {
             console.log(data.info)
           } else {
             console.log(data.info);
@@ -97,9 +99,12 @@ const CoursesPage = () => {
     }
     setPrevEnrollments(enrolledCourses);
   }
-  useEffect(() => {changeCourses();}, [enrolledCourses]);
+  useEffect(() => {
+    localStorage.setItem('enrollments', JSON.stringify(enrolledCourses));
+    changeCourses();
+  }, [enrolledCourses]);
 
-  const handleEnroll = async (course) => {
+  const handleEnroll = (course) => {
     setEnrolledCourses(prev => [...prev, { 
       ...course,
       enrollmentId: Date.now() // Unique ID for each enrollment
@@ -107,9 +112,9 @@ const CoursesPage = () => {
   };
 
   const handleRemove = (enrollmentId) => {
-    setEnrolledCourses(prev => 
-      prev.filter(course => course.enrollmentId !== enrollmentId)
-    );
+    setEnrolledCourses(prev => {
+      return prev.filter(course => course.enrollmentId !== enrollmentId);
+    });
   };
 
   return (

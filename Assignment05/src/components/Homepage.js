@@ -7,7 +7,7 @@ const Homepage = () => {
   const [randomTestimonials, setRandomTestimonials] = useState([]);
 
   const loadCourses = async () => {
-    const backendEndpoint = 'http://127.0.0.1/5001/courses';
+    const backendEndpoint = 'http://127.0.0.1:5001/courses';
     try {
       const response = await fetch(backendEndpoint, {
         method: "GET",
@@ -31,7 +31,7 @@ const Homepage = () => {
   }
   useEffect(() => {loadCourses();}, []);
   const loadTestimonials = async () => {
-    const backendEndpoint = 'http://127.0.0.1/5001/testimonials';
+    const backendEndpoint = 'http://127.0.0.1:5001/testimonials';
     try {
       const response = await fetch(backendEndpoint, {
         method: "GET",

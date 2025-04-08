@@ -100,7 +100,7 @@ const RegForm = () => {
     setError(newError);
 
     if (error == ['', '', '', '']) {
-      const backendEndpoint = 'http://127.0.0.1/5001/register';
+      const backendEndpoint = 'http://127.0.0.1:5001/register';
       
       try {
         const response = await fetch(backendEndpoint, {
