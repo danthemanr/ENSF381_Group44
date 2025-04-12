@@ -126,7 +126,7 @@ def drop(student_id):
 
 @app.route('/courses', methods=['GET']) #TODO: Homepage.js, MainSection.js, and CoursePage.js need to be debugged
 def courses():
-    with open('testimonials.json', 'r') as f:
+    with open('courses.json', 'r') as f:
         return ''.join([l.strip() for l in f])
 
 @app.route('/student_courses/<student_id>', methods=['GET'])
